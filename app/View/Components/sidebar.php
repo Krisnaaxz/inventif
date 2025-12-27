@@ -33,11 +33,10 @@ class sidebar extends Component
                         'label' => 'Kategori Inventaris',
                         'route' => 'inventaris.kategori-inventaris.index',
                     ],
-                    // [
-                    //     'label' => 'Daftar Inventaris',
-                    //     'route' => 'inventaris.daftar-inventaris.index',
-                    //     'isActive' => request()->routeIs('inventaris.daftar-inventaris.*'),
-                    // ],
+                    [
+                        'label' => 'Daftar Inventaris',
+                        'route' => 'inventaris.daftar-inventaris.index',
+                    ],
                 ],
             ],
             // [

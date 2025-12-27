@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\KategoriInventarisController;
+use App\Http\Controllers\InventarisController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -17,6 +18,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::middleware(['auth'])->group(function () {
     Route::prefix('inventaris')->name('inventaris.')->group(function () {
         Route::resource('kategori-inventaris', KategoriInventarisController::class);
-        // Route::resource('daftar-inventaris', App\Http\Controllers\DaftarInventarisController::class);
+        Route::resource('daftar-inventaris', InventarisController::class);
     });
 });
