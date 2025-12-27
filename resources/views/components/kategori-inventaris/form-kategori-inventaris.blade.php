@@ -29,7 +29,6 @@
                             <input type="text" class="form-control" id="nama_kategori" name="nama_kategori"
                                 value="{{ old('nama_kategori', $nama_kategori ?? '') }}"
                                 placeholder="Masukkan nama kategori">
-                            <dd></dd>
                             @error('nama_kategori')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror

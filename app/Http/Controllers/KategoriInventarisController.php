@@ -15,7 +15,7 @@ class KategoriInventarisController extends Controller
         $pageTitle = $this->pageTitle;
         $query = KategoriInventaris::query();
         $kategori = $query->paginate(10);
-        confirmDelete('Apakah Anda yakin ingin menghapus kategori inventaris ini?');
+        confirmDelete('Apakah Anda yakin ingin me   nghapus kategori inventaris ini?');
         return view('kategori-inventaris.index', compact('pageTitle', 'kategori'));
     }
 

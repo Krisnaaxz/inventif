@@ -22,9 +22,8 @@
                         <td class="text-center">
                             <div class="d-flex justify-content-center gap-2">
                                 <x-kategori-inventaris.form-kategori-inventaris id="{{ $item->id }}" />
-
-                                <x-confirm-delete route="inventaris.kategori-inventaris.destroy"
-                                    id="{{ $item->id }}" />
+                                <x-confirm-delete id="{{ $item->id }}"
+                                    route="inventaris.kategori-inventaris.destroy" />
                             </div>
                         </td>
                     </tr>
