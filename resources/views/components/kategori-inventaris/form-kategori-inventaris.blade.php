@@ -1,0 +1,46 @@
+<div>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-round {{ $id ? 'btn-primary btn-icon' : 'btn-dark' }}" data-bs-toggle="modal"
+        data-bs-target="#formKategori{{ $id ?? '' }}">
+        @if ($id)
+            <i class="fas fa-edit"></i>
+        @else
+            <span>Tambah Kategori</span>
+        @endif
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="formKategori{{ $id ?? '' }}" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="formKategoriLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form action="{{ $action }}" method="POST">
+                    @csrf
+                    @if ($id)
+                        @method('PUT')
+                    @endif
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="formKategoriLabel">Form Kategori Inventaris</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="nama_kategori" class="form-label">Nama Kategori</label>
+                            <input type="text" class="form-control" id="nama_kategori" name="nama_kategori"
+                                value="{{ old('nama_kategori', $nama_kategori ?? '') }}"
+                                placeholder="Masukkan nama kategori">
+                            <dd></dd>
+                            @error('nama_kategori')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-white" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

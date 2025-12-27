@@ -11,9 +11,43 @@ class sidebar extends Component
     /**
      * Create a new component instance.
      */
+    public $links;
     public function __construct()
     {
-        //
+        $this->links = [
+            [
+                'label' => 'Dashboard',
+                'route' => 'home',
+                'isActive' => request()->routeIs('home'),
+                'icon' => 'fas fa-home',
+                'isDropdown' => false,
+            ],
+            [
+                'label' => 'Inventaris',
+                'route' => 'inventaris',
+                'isActive' => request()->routeIs('inventaris.*'),
+                'icon' => 'fas fa-storage',
+                'isDropdown' => true,
+                'items' => [
+                    [
+                        'label' => 'Kategori Inventaris',
+                        'route' => 'inventaris.kategori-inventaris.index',
+                    ],
+                    // [
+                    //     'label' => 'Daftar Inventaris',
+                    //     'route' => 'inventaris.daftar-inventaris.index',
+                    //     'isActive' => request()->routeIs('inventaris.daftar-inventaris.*'),
+                    // ],
+                ],
+            ],
+            // [
+            //     'label' => 'Peminjaman',
+            //     'route' => 'peminjaman',
+            //     'isActive' => request()->routeIs('peminjaman'),
+            //     'icon' => 'fas fa-tags',
+            //     'isDropdown' => true,
+            // ],
+        ];
     }
 
     /**

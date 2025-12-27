@@ -39,6 +39,7 @@
 </head>
 
 <body>
+    @include('sweetalert::alert')
     <div class="wrapper">
         <!-- Sidebar -->
         <x-sidebar />
@@ -132,7 +133,7 @@
             <div class="container">
                 <div class="page-inner">
                     <div class="page-header">
-                        <h4 class="page-title">@yield('title', 'InventIF')</h4>
+                        <h4 class="page-title">@yield('page_title', 'InventIF')</h4>
                     </div>
                     @yield('content')
                 </div>

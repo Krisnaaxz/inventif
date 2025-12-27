@@ -1,0 +1,44 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Http\Requests\storeKategoriInventarisRequest;
+use App\Http\Requests\updateKategoriInventarisRequest;
+use App\Models\KategoriInventaris;
+use Illuminate\Http\Request;
+
+class KategoriInventarisController extends Controller
+{
+    public $pageTitle = 'Kategori Inventaris';
+    public function index()
+    {
+        $pageTitle = $this->pageTitle;
+        $query = KategoriInventaris::query();
+        $kategori = $query->paginate(10);
+        return view('kategori-inventaris.index', compact('pageTitle', 'kategori'));
+    }
+
+    public function store(storeKategoriInventarisRequest $request)
+    {
+        KategoriInventaris::create([
+            'nama_kategori' => $request->nama_kategori
+        ]);
+        toast()->success('Berhasil menambahkan kategori inventaris.');
+        return redirect()->route('inventaris.kategori-inventaris.index');
+    }
+
+    public function update(updateKategoriInventarisRequest $request, KategoriInventaris $kategoriInventaris)
+    {
+        $kategoriInventaris->nama_kategori = $request->nama_kategori;
+        $kategoriInventaris->save();
+        toast()->success('Berhasil memperbarui kategori inventaris.');
+        return redirect()->route('inventaris.kategori-inventaris.index');
+    }
+
+    public function destroy(KategoriInventaris $kategoriInventaris)
+    {
+        $kategoriInventaris->delete();
+        toast()->success('Berhasil menghapus kategori inventaris.');
+        return redirect()->route('inventaris.kategori-inventaris.index');
+    }
+}
