@@ -13,8 +13,17 @@ class KategoriInventarisController extends Controller
     public function index()
     {
         $pageTitle = $this->pageTitle;
+        $perPage = request()->query('perPage') ?? 10;
+        $search = request()->query('search');
         $query = KategoriInventaris::query();
-        $kategori = $query->paginate(10);
+
+        if ($search) {
+            $query = KategoriInventaris::where('nama_kategori', 'like', '%' . $search . '%');
+        } else {
+            $query = KategoriInventaris::query();
+        }
+
+        $kategori = $query->paginate($perPage)->appends(request()->query());
         confirmDelete('Apakah Anda yakin ingin me   nghapus kategori inventaris ini?');
         return view('kategori-inventaris.index', compact('pageTitle', 'kategori'));
     }
