@@ -20,17 +20,12 @@
                         <td class="text-center">{{ $index + 1 }}</td>
                         <td>{{ $item->nama_kategori }}</td>
                         <td class="text-center">
-                            <div class="">
+                            <div class="d-flex justify-content-center gap-2">
                                 <x-kategori-inventaris.form-kategori-inventaris id="{{ $item->id }}" />
+
+                                <x-confirm-delete route="inventaris.kategori-inventaris.destroy"
+                                    id="{{ $item->id }}" />
                             </div>
-                            {{-- <form action="{{ route('kategori-inventaris.destroy', $item->id) }}" method="POST"
-                                class="d-inline">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-round btn-danger btn-icon"
-                                    onclick="return confirm('Yakin ingin menghapus kategori ini?')">
-                                    <i class="fas fa-trash"></i>
-                                </button> --}}
                         </td>
                     </tr>
                 @empty
