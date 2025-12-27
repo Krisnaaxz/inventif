@@ -27,7 +27,7 @@
                 <tr>
                     <th class="text-center" style="width: 15px">No</th>
                     <th>Nama Kategori</th>
-                    <th class="text-center" style="width: 100px">Opsi</th>
+                    <th class="text-center" style="width: 200px">Opsi</th>
                 </tr>
             </thead>
             <tbody>

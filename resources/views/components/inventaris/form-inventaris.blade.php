@@ -1,9 +1,9 @@
 <div>
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-round {{ $id ? 'btn-primary btn-icon' : 'btn-dark' }}" data-bs-toggle="modal"
-        data-bs-target="#formInventaris{{ $id ?? '' }}">
+    <button type="button" class="btn {{ $id ? 'btn btn-outline-primary btn-sm me-2' : 'btn-dark' }}"
+        data-bs-toggle="modal" data-bs-target="#formInventaris{{ $id ?? '' }}">
         @if ($id)
-            <i class="fas fa-edit"></i>
+            <i class="fas fa-edit"></i> Edit
         @else
             <span>Tambah Inventaris</span>
         @endif

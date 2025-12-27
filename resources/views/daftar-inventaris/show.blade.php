@@ -67,12 +67,10 @@
                     </div>
 
                     <div class="mt-4 pt-3 border-top">
-                        <button class="btn btn-outline-primary btn-sm me-2">
-                            <i class="fas fa-edit"></i> Edit
-                        </button>
-                        <button class="btn btn-outline-danger btn-sm">
-                            <i class="fas fa-trash"></i> Hapus
-                        </button>
+                        <div class="d-flex gap-2">
+                            <x-inventaris.form-inventaris id="{{ $inventaris->id }}" />
+                            <x-confirm-delete id="{{ $inventaris->id }}" route="inventaris.daftar-inventaris.destroy" />
+                        </div>
                     </div>
                 </div>
             </div>

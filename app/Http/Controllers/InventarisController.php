@@ -77,7 +77,7 @@ class InventarisController extends Controller
         return redirect()->route('inventaris.daftar-inventaris.index');
     }
 
-    public function destroy($id)
+    public function destroy($id )
     {
         $inventaris = Inventaris::findOrFail($id);
         $inventaris->delete();

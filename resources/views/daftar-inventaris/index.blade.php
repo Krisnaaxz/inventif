@@ -27,6 +27,7 @@
                         <th class="text-center" style="width: 15px">No</th>
                         <th>Nama Inventaris</th>
                         <th>Kategori</th>
+                        <th>Jumlah</th>
                         <th class="text-center" style="width: 150px">Opsi</th>
                     </tr>
                 </thead>
@@ -36,12 +37,10 @@
                             <td class="text-center">{{ $index + 1 }}</td>
                             <td>{{ $item->nama_inventaris }}</td>
                             <td>{{ $item->kategori->nama_kategori }}</td>
+                            <td>{{ $item->jumlah_inventaris }}</td>
                             <td>
                                 <div class="d-flex justify-content-center gap-2">
-                                    <x-inventaris.form-inventaris id="{{ $item->id }}" />
                                     <x-view-meta id="{{ $item->id }}" route="inventaris.daftar-inventaris.show" />
-                                    <x-confirm-delete id="{{ $item->id }}"
-                                        route="inventaris.daftar-inventaris.destroy" />
                                 </div>
                             </td>
                         </tr>
