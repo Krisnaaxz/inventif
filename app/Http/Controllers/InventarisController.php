@@ -48,6 +48,7 @@ class InventarisController extends Controller
     {
         $inventaris = Inventaris::with('kategori')->findOrFail($daftar_inventari);
         $pageTitle = $this->pageTitle;
+        confirmDelete('Apakah Anda yakin ingin menghapus data inventaris ini?');
         return view('daftar-inventaris.show', compact('inventaris', 'pageTitle'));
     }
 
@@ -80,6 +81,12 @@ class InventarisController extends Controller
     public function destroy($id )
     {
         $inventaris = Inventaris::findOrFail($id);
+
+        // Hapus gambar jika ada
+        if ($inventaris->gambar_inventaris) {
+            Storage::disk('public')->delete('inventaris/' . $inventaris->gambar_inventaris);
+        }
+
         $inventaris->delete();
         toast()->success('Berhasil menghapus data inventaris.');
         return redirect()->route('inventaris.daftar-inventaris.index');
