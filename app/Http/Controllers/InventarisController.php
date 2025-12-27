@@ -31,7 +31,7 @@ class InventarisController extends Controller
     {
         $fileName = time() . '_' . $request->file('gambar_inventaris')->getClientOriginalName();
         Storage::disk('public')->putFileAs('inventaris', $request->file('gambar_inventaris'), $fileName);
-        Inventaris::create([
+        $inventaris = Inventaris::create([
             'nama_inventaris' => $request->nama_inventaris,
             'deskripsi_inventaris' => $request->deskripsi_inventaris,
             'kategori_inventaris_id' => $request->kategori_inventaris_id,
@@ -41,7 +41,14 @@ class InventarisController extends Controller
             'gambar_inventaris' => $fileName,
         ]);
         toast()->success('Berhasil menambahkan data inventaris.');
-        return redirect()->route('inventaris.daftar-inventaris.index');
+        return redirect()->route('inventaris.daftar-inventaris.show', $inventaris->id);
+    }
+
+    public function show($daftar_inventari)
+    {
+        $inventaris = Inventaris::with('kategori')->findOrFail($daftar_inventari);
+        $pageTitle = $this->pageTitle;
+        return view('daftar-inventaris.show', compact('inventaris', 'pageTitle'));
     }
 
     public function update(storeInventarisRequest $request, $id)

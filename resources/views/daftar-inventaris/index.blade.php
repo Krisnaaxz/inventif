@@ -39,6 +39,7 @@
                             <td>
                                 <div class="d-flex justify-content-center gap-2">
                                     <x-inventaris.form-inventaris id="{{ $item->id }}" />
+                                    <x-view-meta id="{{ $item->id }}" route="inventaris.daftar-inventaris.show" />
                                     <x-confirm-delete id="{{ $item->id }}"
                                         route="inventaris.daftar-inventaris.destroy" />
                                 </div>
