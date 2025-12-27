@@ -13,7 +13,7 @@ class FormInventaris extends Component
     /**
      * Create a new component instance.
      */
-    public $id, $nama_inventaris, $deskripsi_inventaris, $gambar_inventaris, $jumlah_inventaris, $harga_inventaris, $sewa_inventaris, $kategori_inventaris_id, $kategori_inventaris, $action;
+    public $id, $nama_inventaris, $deskripsi_inventaris, $jumlah_inventaris, $harga_inventaris, $sewa_inventaris, $kategori_inventaris_id, $kategori_inventaris, $action;
     public function __construct($id =null)
     {
         $this->kategori_inventaris = KategoriInventaris::all();
@@ -22,7 +22,6 @@ class FormInventaris extends Component
             $this->id = $inventaris->id;
             $this->nama_inventaris = $inventaris->nama_inventaris;
             $this->deskripsi_inventaris = $inventaris->deskripsi_inventaris;
-            $this->gambar_inventaris = $inventaris->gambar_inventaris;
             $this->jumlah_inventaris = $inventaris->jumlah_inventaris;
             $this->harga_inventaris = $inventaris->harga_inventaris;
             $this->sewa_inventaris = $inventaris->sewa_inventaris;

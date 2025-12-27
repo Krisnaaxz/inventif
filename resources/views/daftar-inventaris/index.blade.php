@@ -38,6 +38,7 @@
                             <td>{{ $item->kategori->nama_kategori }}</td>
                             <td>
                                 <div class="d-flex justify-content-center gap-2">
+                                    <x-inventaris.form-inventaris id="{{ $item->id }}" />
                                     <x-confirm-delete id="{{ $item->id }}"
                                         route="inventaris.daftar-inventaris.destroy" />
                                 </div>

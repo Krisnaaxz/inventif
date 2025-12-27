@@ -15,7 +15,7 @@
         tabindex="-1" aria-labelledby="formInventarisLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form action="{{ $action }}" method="POST">
+                <form action="{{ $action }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @if ($id)
                         @method('PUT')
@@ -84,8 +84,7 @@
                         <div class="form-group mb-3">
                             <label for="gambar_inventaris" class="form-label">Gambar</label>
                             <input type="file" class="form-control" id="gambar_inventaris" name="gambar_inventaris"
-                                placeholder="Masukkan gambar inventaris"
-                                value="{{ old('gambar_inventaris', $gambar_inventaris ?? '') }}">
+                                placeholder="Masukkan gambar inventaris">
                             @error('gambar_inventaris')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
