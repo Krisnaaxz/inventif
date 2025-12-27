@@ -13,7 +13,14 @@
                         <x-button-reset-filter route="inventaris.daftar-inventaris.index" />
                     </div>
                 </div>
+                {{-- end filter --}}
+                {{-- form inventaris --}}
+                <div class="col-8 d-flex justify-content-end">
+                    <x-inventaris.form-inventaris />
+                </div>
+                {{-- end form inventaris --}}
             </div>
+
             <table id="daftar-inventaris-table" class="table table-striped table-bordered">
                 <thead>
                     <tr>
@@ -29,7 +36,12 @@
                             <td class="text-center">{{ $index + 1 }}</td>
                             <td>{{ $item->nama_inventaris }}</td>
                             <td>{{ $item->kategori->nama_kategori }}</td>
-                            <td class="text-center">{{ $item->jumlah }}</td>
+                            <td>
+                                <div class="d-flex justify-content-center gap-2">
+                                    <x-confirm-delete id="{{ $item->id }}"
+                                        route="inventaris.daftar-inventaris.destroy" />
+                                </div>
+                            </td>
                         </tr>
                     @empty
                         <tr>
