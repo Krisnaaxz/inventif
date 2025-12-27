@@ -22,7 +22,7 @@ class updateKategoriInventarisRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nama_kategori' => 'required|string|max:255|unique:kategori_inventaris,nama_kategori,' . $this->route('kategori_inventaris')
+            'nama_kategori' => 'required|string|max:255|unique:kategori_inventaris,nama_kategori,' . $this->route('kategori_inventari')
         ];
     }
 

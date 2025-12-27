@@ -28,16 +28,18 @@ class KategoriInventarisController extends Controller
         return redirect()->route('inventaris.kategori-inventaris.index');
     }
 
-    public function update(updateKategoriInventarisRequest $request, KategoriInventaris $kategoriInventaris)
+    public function update(updateKategoriInventarisRequest $request, $id)
     {
+        $kategoriInventaris = KategoriInventaris::findOrFail($id);
         $kategoriInventaris->nama_kategori = $request->nama_kategori;
         $kategoriInventaris->save();
         toast()->success('Berhasil memperbarui kategori inventaris.');
         return redirect()->route('inventaris.kategori-inventaris.index');
     }
 
-    public function destroy(KategoriInventaris $kategoriInventaris)
+    public function destroy($id)
     {
+        $kategoriInventaris = KategoriInventaris::findOrFail($id);
         $kategoriInventaris->delete();
         toast()->success('Berhasil menghapus kategori inventaris.');
         return redirect()->route('inventaris.kategori-inventaris.index');
