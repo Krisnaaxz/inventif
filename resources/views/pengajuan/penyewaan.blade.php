@@ -73,7 +73,8 @@
                             </td>
                             <td>
                                 <div class="d-flex justify-content-center gap-2">
-                                    <x-view-meta id="{{ $item->id }}" route="pengajuan.show" />
+                                    <x-pengajuan.confirm-pengajuan id="{{ $item->id }}"
+                                        route="https://wa.me/+6285183037405" />
                                 </div>
                             </td>
                         </tr>

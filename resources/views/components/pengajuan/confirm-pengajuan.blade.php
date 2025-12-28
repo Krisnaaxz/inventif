@@ -1,3 +1,5 @@
 <div>
-    <!-- I begin to speak only when I am certain what I will say is not better left unsaid. - Cato the Younger -->
+    <a href="{{ $route }}" target="_blank" class="btn btn-outline-success btn-sm">
+        <i class="fas fa-check-circle"></i> Konfirmasi
+    </a>
 </div>
