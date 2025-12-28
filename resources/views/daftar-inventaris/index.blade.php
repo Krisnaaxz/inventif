@@ -46,7 +46,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="4" class="text-center">Data Inventaris Kosong.</td>
+                            <td colspan="5" class="text-center">Data Inventaris Kosong.</td>
                         </tr>
                     @endforelse
                 </tbody>
