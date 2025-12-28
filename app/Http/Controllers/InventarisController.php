@@ -56,7 +56,7 @@ class InventarisController extends Controller
     {
         $inventaris = Inventaris::findOrFail($id);
 
-        if ($request->hasFile('gambar_inventaris')) {
+        if ($request->file('gambar_inventaris')) {
             // Hapus gambar lama jika ada
             if ($inventaris->gambar_inventaris) {
                 Storage::disk('public')->delete('inventaris/' . $inventaris->gambar_inventaris);
