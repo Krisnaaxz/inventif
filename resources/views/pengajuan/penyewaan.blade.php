@@ -17,7 +17,7 @@
                 {{-- form pengajuan --}}
                 @if (auth()->user()->role === 'umum')
                     <div class="col-8 d-flex justify-content-end">
-                        <a href="{{ route('pengajuan.create') }}" class="btn btn-dark">Buat Pengajuan Penyewaan</a>
+                        <x-pengajuan.form-penyewaan :inventaris="$inventaris" />
                     </div>
                 @endif
                 {{-- end form pengajuan --}}
@@ -31,6 +31,7 @@
                         <th>Tanggal Mulai</th>
                         <th>Tanggal Selesai</th>
                         <th>Durasi (Hari)</th>
+                        <th>Barang yang Disewa</th>
                         <th>Status</th>
                         <th class="text-center" style="width: 150px">Opsi</th>
                     </tr>
@@ -44,7 +45,20 @@
                             <td>{{ $item->tanggal_selesai->format('d M Y') }}</td>
                             <td>{{ $item->durasi_sewa ?? '-' }}</td>
                             <td>
-                                <span class="badge badge-{{ $item->status === 'disetujui' ? 'success' : ($item->status === 'ditolak' ? 'danger' : 'warning') }}">
+                                @if ($item->inventaris && $item->inventaris->count() > 0)
+                                    <ul class="list-unstyled mb-0">
+                                        @foreach ($item->inventaris as $inventaris)
+                                            <li>{{ $inventaris->nama_inventaris }} ({{ $inventaris->pivot->jumlah ?? 1 }})
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                @else
+                                    -
+                                @endif
+                            </td>
+                            <td>
+                                <span
+                                    class="badge badge-{{ $item->status === 'disetujui' ? 'success' : ($item->status === 'ditolak' ? 'danger' : 'warning') }}">
                                     {{ ucfirst($item->status) }}
                                 </span>
                             </td>
@@ -56,7 +70,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="7" class="text-center">Belum ada pengajuan penyewaan.</td>
+                            <td colspan="8" class="text-center">Belum ada pengajuan penyewaan.</td>
                         </tr>
                     @endforelse
                 </tbody>

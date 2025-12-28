@@ -16,7 +16,7 @@ class PengajuanController extends Controller
         $pageTitle = $this->pageTitle;
         $query = Pengajuan::query();
         $perPage = request()->query('perPage') ?? 10;
-        $query->with('user:id,name,email,role');
+        $query->with(['user:id,name,email,role', 'inventaris:id,nama_inventaris,kategori_inventaris_id']);
         $search = request()->query('search');
 
         if ($search) {
@@ -37,7 +37,7 @@ class PengajuanController extends Controller
         $pageTitle = 'Peminjaman Inventaris';
         $query = Pengajuan::query();
         $perPage = request()->query('perPage') ?? 10;
-        $query->with('user:id,name,email,role');
+        $query->with(['user:id,name,email,role', 'inventaris:id,nama_inventaris,kategori_inventaris_id']);
         $search = request()->query('search');
         $inventaris = Inventaris::with('kategori:id,nama_kategori')->get();
 
@@ -62,7 +62,7 @@ class PengajuanController extends Controller
         $pageTitle = 'Penyewaan Inventaris';
         $query = Pengajuan::query();
         $perPage = request()->query('perPage') ?? 10;
-        $query->with('user:id,name,email,role');
+        $query->with(['user:id,name,email,role', 'inventaris:id,nama_inventaris,kategori_inventaris_id']);
         $search = request()->query('search');
         $inventaris = Inventaris::with('kategori:id,nama_kategori')->get();
 
@@ -92,17 +92,21 @@ class PengajuanController extends Controller
             'tanggal_selesai' => $request->tanggal_selesai,
             'waktu_mulai' => $request->waktu_mulai,
             'waktu_selesai' => $request->waktu_selesai,
+            'durasi_sewa' => $request->jenis === 'penyewaan' ? $request->durasi_sewa : null,
             'alasan' => $request->keperluan,
             'surat_pengajuan' => $request->file('surat_pengajuan') ? $request->file('surat_pengajuan')->store('surat_pengajuan', 'public') : null,
             'tanggal_pengajuan' => now(),
         ]);
 
-        // Attach inventaris items
+        // Attach inventaris items with quantities
         if ($request->has('inventaris_ids') && is_array($request->inventaris_ids)) {
             $inventarisData = [];
+            $jumlahData = $request->input('jumlah', []);
+
             foreach ($request->inventaris_ids as $inventarisId) {
+                $jumlah = isset($jumlahData[$inventarisId]) ? (int) $jumlahData[$inventarisId] : 1;
                 $inventarisData[$inventarisId] = [
-                    'jumlah' => 1, // Default jumlah
+                    'jumlah' => $jumlah,
                     'kondisi' => 'baik', // Default kondisi
                 ];
             }

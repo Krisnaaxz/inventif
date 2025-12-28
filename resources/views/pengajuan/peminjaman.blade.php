@@ -28,6 +28,7 @@
                     <tr>
                         <th class="text-center" style="width: 15px">No</th>
                         <th>Nama Pengaju</th>
+                        <th>Barang Dipinjam</th>
                         <th>Tanggal Mulai</th>
                         <th>Tanggal Selesai</th>
                         <th>Status</th>
@@ -39,6 +40,21 @@
                         <tr>
                             <td class="text-center">{{ $index + 1 }}</td>
                             <td>{{ $item->user->name }}</td>
+                            <td>
+                                @if ($item->inventaris && $item->inventaris->count() > 0)
+                                    <ul class="list-unstyled mb-0">
+                                        @foreach ($item->inventaris as $inventaris)
+                                            <li class="small">
+                                                {{ $inventaris->nama_inventaris }}
+                                                <span class="badge bg-secondary">{{ $inventaris->pivot->jumlah }}
+                                                    unit</span>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                @else
+                                    <span class="text-muted">-</span>
+                                @endif
+                            </td>
                             <td>{{ $item->tanggal_mulai->format('d M Y') }}</td>
                             <td>{{ $item->tanggal_selesai->format('d M Y') }}</td>
                             <td>
