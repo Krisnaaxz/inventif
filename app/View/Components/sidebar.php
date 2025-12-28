@@ -46,13 +46,27 @@ class sidebar extends Component
                     ],
                 ],
             ],
-            // [
-            //     'label' => 'Peminjaman',
-            //     'route' => 'peminjaman',
-            //     'isActive' => request()->routeIs('peminjaman'),
-            //     'icon' => 'fas fa-tags',
-            //     'isDropdown' => true,
-            // ],
+            [
+                'label' => 'Pengajuan',
+                'route' => 'pengajuan',
+                'isActive' => request()->routeIs('pengajuan.*'),
+                'icon' => 'fas fa-tags',
+                'isDropdown' => true,
+                'items' => [
+                    [
+                        'label' => 'Peminjaman Inventaris',
+                        'route' => 'pengajuan.peminjaman',
+                    ],
+                    [
+                        'label' => 'Penyewaan Inventaris',
+                        'route' => 'pengajuan.penyewaan',
+                    ],
+                    [
+                        'label' => 'Riwayat Pengajuan',
+                        'route' => 'pengajuan.index',
+                    ],
+                ],
+            ],
         ];
         $this->organisasiLinks = [
             [
@@ -68,26 +82,24 @@ class sidebar extends Component
                 'isActive' => request()->routeIs('inventaris.*'),
                 'icon' => 'fas fa-boxes',
                 'isDropdown' => false,
-                'id' => 'inventaris',
             ],
-        //     [
-        //         'label' => 'Pengajuan',
-        //         'route' => 'pengajuan',
-        //         'isActive' => request()->routeIs('pengajuan.*'),
-        //         'icon' => 'fas fa-tags',
-        //         'isDropdown' => true,
-        //         'id' => 'pengajuan',
-        //         'items' => [
-        //             [
-        //                 'label' => 'Peminjaman Inventaris',
-        //                 'route' => 'pengajuan.pengajuan-peminjaman.index',
-        //             ],
-        //             [
-        //                 'label' => 'Riwayat Pengajuan',
-        //                 'route' => 'pengajuan.riwayat-pengajuan.index',
-        //             ],
-        //         ],
-        //     ],
+            [
+                'label' => 'Pengajuan',
+                'route' => 'pengajuan',
+                'isActive' => request()->routeIs('pengajuan.*'),
+                'icon' => 'fas fa-tags',
+                'isDropdown' => true,
+                'items' => [
+                    [
+                        'label' => 'Peminjaman Inventaris',
+                        'route' => 'pengajuan.peminjaman',
+                    ],
+                    [
+                        'label' => 'Riwayat Pengajuan',
+                        'route' => 'pengajuan.index',
+                    ],
+                ],
+            ],
         ];
 
         $this->umumLinks = [
@@ -104,26 +116,24 @@ class sidebar extends Component
                 'isActive' => request()->routeIs('inventaris.*'),
                 'icon' => 'fas fa-boxes',
                 'isDropdown' => false,
-                'id' => 'inventaris',
             ],
-            // [
-            //     'label' => 'Pengajuan',
-            //     'route' => 'pengajuan',
-            //     'isActive' => request()->routeIs('pengajuan.*'),
-            //     'icon' => 'fas fa-tags',
-            //     'isDropdown' => true,
-            //     'id' => 'pengajuan',
-            //     'items' => [
-            //         [
-            //             'label' => 'Penyewaan Inventaris',
-            //             'route' => 'pengajuan.pengajuan-penyewaan.index',
-            //         ],
-            //         [
-            //             'label' => 'Riwayat Pengajuan',
-            //             'route' => 'pengajuan.riwayat-pengajuan.index',
-            //         ],
-            //     ],
-            // ],
+[
+                'label' => 'Pengajuan',
+                'route' => 'pengajuan',
+                'isActive' => request()->routeIs('pengajuan.*'),
+                'icon' => 'fas fa-tags',
+                'isDropdown' => true,
+                'items' => [
+                    [
+                        'label' => 'Penyewaan Inventaris',
+                        'route' => 'pengajuan.penyewaan',
+                    ],
+                    [
+                        'label' => 'Riwayat Pengajuan',
+                        'route' => 'pengajuan.index',
+                    ],
+                ],
+            ],
         ];
     }
 

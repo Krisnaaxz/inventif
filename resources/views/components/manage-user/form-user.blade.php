@@ -1,6 +1,6 @@
 <div>
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn {{ $id ? 'btn btn-outline-primary btn-sm me-2' : 'btn-dark' }}"
+    <button type="button" class="btn {{ $id ? 'btn btn-outline-primary btn-sm me-2' : 'btn-dark' }}"
         data-bs-toggle="modal" data-bs-target="#formUserModal{{ $id ?? '' }}">
         @if ($id)
             <i class="fas fa-edit"></i>

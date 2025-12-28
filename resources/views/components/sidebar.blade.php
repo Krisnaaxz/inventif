@@ -58,13 +58,13 @@
                           @foreach ($organisasiLinks as $link)
                               @if ($link['isDropdown'])
                                   <li class="nav-item {{ $link['isActive'] ? 'active' : '' }}">
-                                      <a data-bs-toggle="collapse" href="#{{ $link['id'] }}" class="collapsed"
+                                      <a data-bs-toggle="collapse" href="#dashboard" class="collapsed"
                                           aria-expanded="false">
                                           <i class="{{ $link['icon'] }}"></i>
                                           <p>{{ $link['label'] }}</p>
                                           <span class="caret"></span>
                                       </a>
-                                      <div class="collapse" id="{{ $link['id'] }}">
+                                      <div class="collapse" id="dashboard">
                                           <ul class="nav nav-collapse">
                                               @foreach ($link['items'] as $item)
                                                   <li>
@@ -89,13 +89,13 @@
                           @foreach ($umumLinks as $link)
                               @if ($link['isDropdown'])
                                   <li class="nav-item {{ $link['isActive'] ? 'active' : '' }}">
-                                      <a data-bs-toggle="collapse" href="#{{ $link['id'] }}" class="collapsed"
+                                      <a data-bs-toggle="collapse" href="#dashboard" class="collapsed"
                                           aria-expanded="false">
                                           <i class="{{ $link['icon'] }}"></i>
                                           <p>{{ $link['label'] }}</p>
                                           <span class="caret"></span>
                                       </a>
-                                      <div class="collapse" id="{{ $link['id'] }}">
+                                      <div class="collapse" id="dashboard">
                                           <ul class="nav nav-collapse">
                                               @foreach ($link['items'] as $item)
                                                   <li>

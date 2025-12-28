@@ -3,7 +3,9 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KategoriInventarisController;
 use App\Http\Controllers\InventarisController;
+use App\Http\Controllers\PengajuanController;
 use App\Http\Controllers\UserController;
+use App\Models\Pengajuan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -16,6 +18,9 @@ Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::middleware(['auth'])->group(function () {
+    Route::resource('pengajuan', PengajuanController::class);
+    Route::get('pengajuan-peminjaman', [PengajuanController::class, 'peminjaman'])->name('pengajuan.peminjaman');
+    Route::get('pengajuan-penyewaan', [PengajuanController::class, 'penyewaan'])->name('pengajuan.penyewaan');
     Route::prefix('inventaris')->name('inventaris.')->group(function () {
         Route::resource('daftar-inventaris', InventarisController::class);
     });
@@ -26,8 +31,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('manage-user', UserController::class);
     Route::prefix('inventaris')->name('inventaris.')->group(function () {
         Route::resource('kategori-inventaris', KategoriInventarisController::class);
-        // Route::resource('daftar-inventaris', InventarisController::class);
     });
+    // Route::prefix('pengajuan')->name('pengajuan.')->group(function () {
+    // });
 });
 
 // Organisasi Routes
