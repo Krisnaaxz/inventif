@@ -12,10 +12,10 @@ class SelesaiPengajuan extends Component
      * Create a new component instance.
      */
     public $id, $route;
-    public function __construct($id, $route)
+    public function __construct($id, $route, $action)
     {
         $this->id = $id;
-        $this->route = $route;
+        $this->route = route($route, ['action' => $action, 'id' => $id]);
     }
 
     /**

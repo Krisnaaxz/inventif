@@ -59,7 +59,7 @@
                             <td>{{ $item->tanggal_selesai->format('d M Y') }}</td>
                             <td>
                                 <span
-                                    class="badge badge-{{ $item->status === 'disetujui' ? 'success' : ($item->status === 'ditolak' ? 'danger' : 'warning') }}">
+                                    class="badge badge-{{ in_array($item->status, ['disetujui', 'selesai']) ? 'success' : (in_array($item->status, ['ditolak', 'dibatalkan']) ? 'danger' : 'warning') }}">
                                     {{ ucfirst($item->status) }}
                                 </span>
                             </td>
@@ -71,16 +71,16 @@
                                         <div class="d-flex justify-content-center gap-2">
                                             <x-pengajuan.confirm-pengajuan id="{{ $item->id }}"
                                                 route="https://wa.me/+6285183037405" />
-                                            <x-pengajuan.cancel-pengajuan id="{{ $item->id }}"
-                                                route="pengajuan.peminjaman.cancel" />
+                                            <x-pengajuan.cancel-pengajuan id="{{ $item->id }}" route="pengajuan.cancel"
+                                                action="peminjaman" />
                                         </div>
                                     @elseif($item->status === 'disetujui' || $item->status === 'selesai')
                                         <div class="d-flex justify-content-center gap-2">
-                                            <span class="btn btn-outline-secondary"><i class="fa fa-check"></i></span>
+                                            <span>-</span>
                                         </div>
                                     @elseif($item->status === 'ditolak' || $item->status === 'dibatalkan')
                                         <div class="d-flex justify-content-center gap-2">
-                                            <span class="btn btn-outline-danger"><i class="fa fa-times"></i></span>
+                                            <span>-</span>
                                         </div>
                                     @endif
                                     {{-- Admin --}}
@@ -88,22 +88,22 @@
                                     @if ($item->status === 'menunggu')
                                         <div class="d-flex justify-content-center gap-2">
                                             <x-pengajuan.approve-pengajuan id="{{ $item->id }}"
-                                                route="pengajuan.peminjaman.approve" />
-                                            <x-pengajuan.reject-pengajuan id="{{ $item->id }}"
-                                                route="pengajuan.peminjaman.reject" />
+                                                route="pengajuan.approve" action="peminjaman" />
+                                            <x-pengajuan.reject-pengajuan id="{{ $item->id }}" route="pengajuan.reject"
+                                                action="peminjaman" />
                                         </div>
                                     @elseif($item->status === 'disetujui')
-                                        <x-pengajuan.selesai-pengajuan id="{{ $item->id }}"
-                                            route="pengajuan.peminjaman.selesai" />
+                                        <x-pengajuan.selesai-pengajuan id="{{ $item->id }}" route="pengajuan.selesai"
+                                            action="peminjaman" />
                                     @elseif ($item->status === 'ditolak' || $item->status === 'dibatalkan' || $item->status === 'selesai')
-                                        <x-confirm-delete id="{{ $item->id }}" route="pengajuan.peminjaman.destroy" />
+                                        <x-confirm-delete id="{{ $item->id }}" route="pengajuan.destroy" />
                                     @endif
                                 @endif
                             </td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="6" class="text-center">Belum ada pengajuan peminjaman.</td>
+                            <td colspan="7" class="text-center">Belum ada pengajuan peminjaman.</td>
                         </tr>
                     @endforelse
                 </tbody>

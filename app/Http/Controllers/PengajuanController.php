@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePengajuanRequest;
 use App\Models\Inventaris;
 use App\Models\Pengajuan;
+use App\View\Components\ConfirmDelete;
+use Illuminate\Console\View\Components\Confirm;
 use Illuminate\Http\Request;
 
 class PengajuanController extends Controller
@@ -27,7 +29,7 @@ class PengajuanController extends Controller
         if (auth()->user()->role !== 'admin') {
             $query->where('user_id', auth()->user()->id);
         }
-
+        ConfirmDelete('Apakah Anda yakin ingin menghapus pengajuan ini?');
         $pengajuans = $query->orderBy('tanggal_pengajuan', 'desc')->paginate($perPage)->appends(request()->query());
         return view('pengajuan.index', compact('pageTitle', 'pengajuans'));
     }
@@ -52,7 +54,7 @@ class PengajuanController extends Controller
         if (auth()->user()->role !== 'admin') {
             $query->where('user_id', auth()->user()->id);
         }
-
+        ConfirmDelete('Apakah Anda yakin ingin menghapus pengajuan ini?');
         $pengajuans = $query->orderBy('tanggal_pengajuan', 'desc')->paginate($perPage)->appends(request()->query());
         return view('pengajuan.peminjaman', compact('pageTitle', 'pengajuans', 'inventaris'));
     }
@@ -77,7 +79,7 @@ class PengajuanController extends Controller
         if (auth()->user()->role !== 'admin') {
             $query->where('user_id', auth()->user()->id);
         }
-
+        ConfirmDelete('Apakah Anda yakin ingin menghapus pengajuan ini?');
         $pengajuans = $query->orderBy('tanggal_pengajuan', 'desc')->paginate($perPage)->appends(request()->query());
         return view('pengajuan.penyewaan', compact('pageTitle', 'pengajuans', 'inventaris'));
     }
@@ -156,5 +158,14 @@ class PengajuanController extends Controller
 
         toast()->success('Pengajuan berhasil diselesaikan.');
         return redirect()->route('pengajuan.' . $action);
+    }
+    public function destroy($id)
+    {
+        $pengajuan = Pengajuan::findOrFail($id);
+        $pengajuan->inventaris()->detach(); // Detach related inventaris
+        $pengajuan->delete();
+
+        toast()->success('Pengajuan berhasil dihapus.');
+        return redirect()->back();
     }
 }

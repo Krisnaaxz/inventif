@@ -21,6 +21,10 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('pengajuan', PengajuanController::class);
     Route::get('pengajuan-peminjaman', [PengajuanController::class, 'peminjaman'])->name('pengajuan.peminjaman');
     Route::get('pengajuan-penyewaan', [PengajuanController::class, 'penyewaan'])->name('pengajuan.penyewaan');
+    Route::get('pengajuan/{action}/cancel/{id}', [PengajuanController::class, 'cancel'])->name('pengajuan.cancel');
+    Route::get('pengajuan/{action}/approve/{id}', [PengajuanController::class, 'approve'])->name('pengajuan.approve');
+    Route::get('pengajuan/{action}/reject/{id}', [PengajuanController::class, 'reject'])->name('pengajuan.reject');
+    Route::get('pengajuan/{action}/selesai/{id}', [PengajuanController::class, 'selesai'])->name('pengajuan.selesai');
     Route::prefix('inventaris')->name('inventaris.')->group(function () {
         Route::resource('daftar-inventaris', InventarisController::class);
     });

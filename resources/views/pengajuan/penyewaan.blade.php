@@ -67,15 +67,46 @@
                             </td>
                             <td>
                                 <span
-                                    class="badge badge-{{ $item->status === 'disetujui' ? 'success' : ($item->status === 'ditolak' ? 'danger' : 'warning') }}">
+                                    class="badge badge-{{ in_array($item->status, ['disetujui', 'selesai']) ? 'success' : (in_array($item->status, ['ditolak', 'dibatalkan']) ? 'danger' : 'warning') }}">
                                     {{ ucfirst($item->status) }}
                                 </span>
                             </td>
+                            {{-- Action Logic --}}
                             <td>
-                                <div class="d-flex justify-content-center gap-2">
-                                    <x-pengajuan.confirm-pengajuan id="{{ $item->id }}"
-                                        route="https://wa.me/+6285183037405" />
-                                </div>
+                                {{-- Umum --}}
+                                @if (auth()->user()->role === 'umum')
+                                    @if ($item->status === 'menunggu')
+                                        <div class="d-flex justify-content-center gap-2">
+                                            <x-pengajuan.confirm-pengajuan id="{{ $item->id }}"
+                                                route="https://wa.me/+6285183037405" />
+                                            <x-pengajuan.cancel-pengajuan id="{{ $item->id }}" route="pengajuan.cancel"
+                                                action="penyewaan" />
+                                        </div>
+                                    @elseif($item->status === 'disetujui' || $item->status === 'selesai')
+                                        <div class="d-flex justify-content-center gap-2">
+                                            <span>-</span>
+                                        </div>
+                                    @elseif($item->status === 'ditolak' || $item->status === 'dibatalkan')
+                                        <div class="d-flex justify-content-center gap-2">
+                                            <span>-</span>
+                                        </div>
+                                    @endif
+                                    {{-- Admin --}}
+                                @elseif(auth()->user()->role === 'admin')
+                                    @if ($item->status === 'menunggu')
+                                        <div class="d-flex justify-content-center gap-2">
+                                            <x-pengajuan.approve-pengajuan id="{{ $item->id }}"
+                                                route="pengajuan.approve" action="penyewaan" />
+                                            <x-pengajuan.reject-pengajuan id="{{ $item->id }}" route="pengajuan.reject"
+                                                action="penyewaan" />
+                                        </div>
+                                    @elseif($item->status === 'disetujui')
+                                        <x-pengajuan.selesai-pengajuan id="{{ $item->id }}" route="pengajuan.selesai"
+                                            action="penyewaan" />
+                                    @elseif ($item->status === 'ditolak' || $item->status === 'dibatalkan' || $item->status === 'selesai')
+                                        <x-confirm-delete id="{{ $item->id }}" route="pengajuan.destroy" />
+                                    @endif
+                                @endif
                             </td>
                         </tr>
                     @empty
