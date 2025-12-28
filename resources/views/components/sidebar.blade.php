@@ -1,21 +1,21 @@
       <div class="sidebar" data-background-color="light">
           <div class="sidebar-logo">
               <!-- Logo Header -->
-              <div class="logo-header" data-background-color="light">
-                  <a href="/home" class="logo">
-                      <img src="{{ asset('layout') }}/assets/img/kaiadmin/logo_light.svg" alt="navbar brand"
-                          class="navbar-brand" height="20" />
+              <div class="logo-header">
+                  <a href="/home" class="logo" data-background-color="light">
+                      <img src="{{ asset('layout') }}/assets/img/InventIF_logo.png" alt="navbar brand"
+                          class="mt-4 navbar-brand d-flex align-items-center justify-content-center" height="180" />
                   </a>
-                  <div class="nav-toggle">
-                      <button class="btn btn-toggle toggle-sidebar">
-                          <i class="gg-menu-right"></i>
+                  <div class="nav-toggle btn-gray">
+                      <button class="btn btn-toggle toggle-sidebar btn-light">
+                          <i class="gg-menu-right text-gray"></i>
                       </button>
-                      <button class="btn btn-toggle sidenav-toggler">
-                          <i class="gg-menu-left"></i>
+                      <button class="btn btn-toggle sidenav-toggler btn-light">
+                          <i class="gg-menu-left text-gray"></i>
                       </button>
                   </div>
-                  <button class="topbar-toggler more">
-                      <i class="gg-more-vertical-alt"></i>
+                  <button class="topbar-toggler more ">
+                      <i class="gg-more-vertical-alt "></i>
                   </button>
               </div>
               <!-- End Logo Header -->
