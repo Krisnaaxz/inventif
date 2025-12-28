@@ -65,13 +65,15 @@
                         <h6 class="text-muted mb-2">Deskripsi</h6>
                         <p class="mb-0" style="line-height: 1.6;">{{ $inventaris->deskripsi_inventaris }}</p>
                     </div>
-
-                    <div class="mt-4 pt-3 border-top">
-                        <div class="d-flex gap-2">
-                            <x-inventaris.form-inventaris id="{{ $inventaris->id }}" />
-                            <x-confirm-delete id="{{ $inventaris->id }}" route="inventaris.daftar-inventaris.destroy" />
+                    @if (auth()->user()->role === 'admin')
+                        <div class="mt-4 pt-3 border-top">
+                            <div class="d-flex gap-2">
+                                <x-inventaris.form-inventaris id="{{ $inventaris->id }}" />
+                                <x-confirm-delete id="{{ $inventaris->id }}"
+                                    route="inventaris.daftar-inventaris.destroy" />
+                            </div>
                         </div>
-                    </div>
+                    @endif
                 </div>
             </div>
         </div>

@@ -15,9 +15,11 @@
                 </div>
                 {{-- end filter --}}
                 {{-- form inventaris --}}
-                <div class="col-8 d-flex justify-content-end">
-                    <x-inventaris.form-inventaris />
-                </div>
+                @if (auth()->user()->role === 'admin')
+                    <div class="col-8 d-flex justify-content-end">
+                        <x-inventaris.form-inventaris />
+                    </div>
+                @endif
                 {{-- end form inventaris --}}
             </div>
 

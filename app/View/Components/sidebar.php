@@ -11,7 +11,7 @@ class sidebar extends Component
     /**
      * Create a new component instance.
      */
-    public $links;
+    public $links, $organisasiLinks, $umumLinks;
     public function __construct()
     {
         $this->links = [
@@ -52,6 +52,77 @@ class sidebar extends Component
             //     'isActive' => request()->routeIs('peminjaman'),
             //     'icon' => 'fas fa-tags',
             //     'isDropdown' => true,
+            // ],
+        ];
+        $this->organisasiLinks = [
+            [
+                'label' => 'Dashboard',
+                'route' => 'home',
+                'isActive' => request()->routeIs('home'),
+                'icon' => 'fas fa-home',
+                'isDropdown' => false,
+            ],
+            [
+                'label' => 'Inventaris',
+                'route' => 'inventaris.daftar-inventaris.index',
+                'isActive' => request()->routeIs('inventaris.*'),
+                'icon' => 'fas fa-boxes',
+                'isDropdown' => false,
+                'id' => 'inventaris',
+            ],
+        //     [
+        //         'label' => 'Pengajuan',
+        //         'route' => 'pengajuan',
+        //         'isActive' => request()->routeIs('pengajuan.*'),
+        //         'icon' => 'fas fa-tags',
+        //         'isDropdown' => true,
+        //         'id' => 'pengajuan',
+        //         'items' => [
+        //             [
+        //                 'label' => 'Peminjaman Inventaris',
+        //                 'route' => 'pengajuan.pengajuan-peminjaman.index',
+        //             ],
+        //             [
+        //                 'label' => 'Riwayat Pengajuan',
+        //                 'route' => 'pengajuan.riwayat-pengajuan.index',
+        //             ],
+        //         ],
+        //     ],
+        ];
+
+        $this->umumLinks = [
+            [
+                'label' => 'Dashboard',
+                'route' => 'home',
+                'isActive' => request()->routeIs('home'),
+                'icon' => 'fas fa-home',
+                'isDropdown' => false,
+            ],
+            [
+                'label' => 'Inventaris',
+                'route' => 'inventaris.daftar-inventaris.index',
+                'isActive' => request()->routeIs('inventaris.*'),
+                'icon' => 'fas fa-boxes',
+                'isDropdown' => false,
+                'id' => 'inventaris',
+            ],
+            // [
+            //     'label' => 'Pengajuan',
+            //     'route' => 'pengajuan',
+            //     'isActive' => request()->routeIs('pengajuan.*'),
+            //     'icon' => 'fas fa-tags',
+            //     'isDropdown' => true,
+            //     'id' => 'pengajuan',
+            //     'items' => [
+            //         [
+            //             'label' => 'Penyewaan Inventaris',
+            //             'route' => 'pengajuan.pengajuan-penyewaan.index',
+            //         ],
+            //         [
+            //             'label' => 'Riwayat Pengajuan',
+            //             'route' => 'pengajuan.riwayat-pengajuan.index',
+            //         ],
+            //     ],
             // ],
         ];
     }
