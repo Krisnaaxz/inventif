@@ -23,7 +23,16 @@ class PengajuanController extends Controller
         $inventaris = Inventaris::with('kategori:id,nama_kategori')->get();
 
         if ($search) {
-            $query->where('status', 'like', '%' . $search . '%');
+            $query->where(function ($q) use ($search) {
+                $q->where('status', 'like', '%' . $search . '%')
+                  ->orWhere('jenis', 'like', '%' . $search . '%')
+                  ->orWhereHas('user', function ($userQuery) use ($search) {
+                      $userQuery->where('name', 'like', '%' . $search . '%');
+                  })
+                  ->orWhereHas('inventaris', function ($inventarisQuery) use ($search) {
+                      $inventarisQuery->where('nama_inventaris', 'like', '%' . $search . '%');
+                  });
+            });
         }
 
         // Filter berdasarkan role
@@ -51,7 +60,15 @@ class PengajuanController extends Controller
         $query->where('jenis', 'peminjaman');
 
         if ($search) {
-            $query->where('status', 'like', '%' . $search . '%');
+            $query->where(function ($q) use ($search) {
+                $q->where('status', 'like', '%' . $search . '%')
+                  ->orWhereHas('user', function ($userQuery) use ($search) {
+                      $userQuery->where('name', 'like', '%' . $search . '%');
+                  })
+                  ->orWhereHas('inventaris', function ($inventarisQuery) use ($search) {
+                      $inventarisQuery->where('nama_inventaris', 'like', '%' . $search . '%');
+                  });
+            });
         }
 
         // Jika bukan admin, hanya tampilkan pengajuan user sendiri
@@ -76,7 +93,15 @@ class PengajuanController extends Controller
         $query->where('jenis', 'penyewaan');
 
         if ($search) {
-            $query->where('status', 'like', '%' . $search . '%');
+            $query->where(function ($q) use ($search) {
+                $q->where('status', 'like', '%' . $search . '%')
+                  ->orWhereHas('user', function ($userQuery) use ($search) {
+                      $userQuery->where('name', 'like', '%' . $search . '%');
+                  })
+                  ->orWhereHas('inventaris', function ($inventarisQuery) use ($search) {
+                      $inventarisQuery->where('nama_inventaris', 'like', '%' . $search . '%');
+                  });
+            });
         }
 
         // Jika bukan admin, hanya tampilkan pengajuan user sendiri
