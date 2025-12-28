@@ -20,10 +20,10 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         User::factory()->create([
-            'name' => env('USER_NAME'),
+            'name' => env('USER_NAME', 'HIMAIF'),
             'role' => 'admin',
-            'email' => env('USER_EMAIL'),
-            'password' => Hash::make(env('USER_PASSWORD')),
+            'email' => env('USER_EMAIL', 'admin@admin.com'),
+            'password' => Hash::make(env('USER_PASSWORD', 'admin123')),
         ]);
         User::factory()->create([
             'name' => 'HIMAKI',
@@ -36,16 +36,6 @@ class DatabaseSeeder extends Seeder
             'role' => 'umum',
             'email' => 'mangkriisnaa@example.com',
             'password' => Hash::make('12345678'),
-        ]);
-
-        KategoriInventaris::factory()->createMany([
-            ['nama_kategori' => 'Kabel'],
-            ['nama_kategori' => 'Proyektor'],
-            ['nama_kategori' => 'Alat Tulis Kantor'],
-            ['nama_kategori' => 'Perlengkapan Kebersihan'],
-            ['nama_kategori' => 'Speaker'],
-            ['nama_kategori' => 'Microphone'],
-            ['nama_kategori' => 'Lainnya'],
         ]);
     }
 }

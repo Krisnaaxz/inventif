@@ -23,6 +23,13 @@ class sidebar extends Component
                 'isDropdown' => false,
             ],
             [
+                'label' => 'Manage User',
+                'route' => 'manage-user.index',
+                'isActive' => request()->routeIs('manage-user'),
+                'icon' => 'fas fa-users-cog',
+                'isDropdown' => false,
+            ],
+            [
                 'label' => 'Inventaris',
                 'route' => 'inventaris',
                 'isActive' => request()->routeIs('inventaris.*'),
