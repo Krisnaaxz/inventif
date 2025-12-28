@@ -20,18 +20,22 @@ class PengajuanController extends Controller
         $perPage = request()->query('perPage') ?? 10;
         $query->with(['user:id,name,email,role', 'inventaris:id,nama_inventaris,kategori_inventaris_id']);
         $search = request()->query('search');
+        $inventaris = Inventaris::with('kategori:id,nama_kategori')->get();
 
         if ($search) {
             $query->where('status', 'like', '%' . $search . '%');
         }
 
-        // Admin melihat semua pengajuan
-        if (auth()->user()->role !== 'admin') {
-            $query->where('user_id', auth()->user()->id);
+        // Filter berdasarkan role
+        if (auth()->user()->role === 'organisasi') {
+            $query->where('jenis', 'peminjaman');
+        } elseif (auth()->user()->role === 'umum') {
+            $query->where('jenis', 'penyewaan');
         }
+        // Admin melihat semua pengajuan tanpa filter jenis
         ConfirmDelete('Apakah Anda yakin ingin menghapus pengajuan ini?');
         $pengajuans = $query->orderBy('tanggal_pengajuan', 'desc')->paginate($perPage)->appends(request()->query());
-        return view('pengajuan.index', compact('pageTitle', 'pengajuans'));
+        return view('pengajuan.index', compact('pageTitle', 'pengajuans', 'inventaris'));
     }
 
     public function peminjaman()
