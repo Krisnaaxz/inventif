@@ -38,7 +38,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($pengajuans as $index => $item)
+                    @forelse ($pengajuans->where('status', '==', 'menunggu') as $index => $item)
                         <tr>
                             <td class="text-center">{{ $index + 1 }}</td>
                             <td>{{ $item->user->name }}</td>
