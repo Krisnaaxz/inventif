@@ -63,11 +63,42 @@
                                     {{ ucfirst($item->status) }}
                                 </span>
                             </td>
+                            {{-- Action Logic --}}
                             <td>
-                                <div class="d-flex justify-content-center gap-2">
-                                    <x-pengajuan.confirm-pengajuan id="{{ $item->id }}"
-                                        route="https://wa.me/+6285183037405" />
-                                </div>
+                                {{-- Organisasi --}}
+                                @if (auth()->user()->role === 'organisasi')
+                                    @if ($item->status === 'menunggu')
+                                        <div class="d-flex justify-content-center gap-2">
+                                            <x-pengajuan.confirm-pengajuan id="{{ $item->id }}"
+                                                route="https://wa.me/+6285183037405" />
+                                            <x-pengajuan.cancel-pengajuan id="{{ $item->id }}"
+                                                route="pengajuan.peminjaman.cancel" />
+                                        </div>
+                                    @elseif($item->status === 'disetujui' || $item->status === 'selesai')
+                                        <div class="d-flex justify-content-center gap-2">
+                                            <span class="btn btn-outline-secondary"><i class="fa fa-check"></i></span>
+                                        </div>
+                                    @elseif($item->status === 'ditolak' || $item->status === 'dibatalkan')
+                                        <div class="d-flex justify-content-center gap-2">
+                                            <span class="btn btn-outline-danger"><i class="fa fa-times"></i></span>
+                                        </div>
+                                    @endif
+                                    {{-- Admin --}}
+                                @elseif(auth()->user()->role === 'admin')
+                                    @if ($item->status === 'menunggu')
+                                        <div class="d-flex justify-content-center gap-2">
+                                            <x-pengajuan.approve-pengajuan id="{{ $item->id }}"
+                                                route="pengajuan.peminjaman.approve" />
+                                            <x-pengajuan.reject-pengajuan id="{{ $item->id }}"
+                                                route="pengajuan.peminjaman.reject" />
+                                        </div>
+                                    @elseif($item->status === 'disetujui')
+                                        <x-pengajuan.selesai-pengajuan id="{{ $item->id }}"
+                                            route="pengajuan.peminjaman.selesai" />
+                                    @elseif ($item->status === 'ditolak' || $item->status === 'dibatalkan' || $item->status === 'selesai')
+                                        <x-confirm-delete id="{{ $item->id }}" route="pengajuan.peminjaman.destroy" />
+                                    @endif
+                                @endif
                             </td>
                         </tr>
                     @empty

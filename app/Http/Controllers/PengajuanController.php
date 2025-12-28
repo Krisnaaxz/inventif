@@ -117,4 +117,44 @@ class PengajuanController extends Controller
         toast()->success('Pengajuan ' . $request->jenis . ' berhasil dikirim.');
         return redirect()->route('pengajuan.' . $request->jenis);
     }
+
+    public function cancel($action, $id)
+    {
+        $pengajuan = Pengajuan::findOrFail($id);
+        $pengajuan->status = 'dibatalkan';
+        $pengajuan->save();
+
+        toast()->success('Pengajuan berhasil dibatalkan.');
+        return redirect()->route('pengajuan.' . $action);
+    }
+    public function approve($action, $id)
+    {
+        $pengajuan = Pengajuan::findOrFail($id);
+        $pengajuan->status = 'disetujui';
+        $pengajuan->approved_by = auth()->user()->id;
+        $pengajuan->approved_at = now();
+        $pengajuan->save();
+
+        toast()->success('Pengajuan berhasil disetujui.');
+        return redirect()->route('pengajuan.' . $action);
+    }
+    public function reject($action, $id)
+    {
+        $pengajuan = Pengajuan::findOrFail($id);
+        $pengajuan->status = 'ditolak';
+        $pengajuan->save();
+
+        toast()->success('Pengajuan berhasil ditolak.');
+        return redirect()->route('pengajuan.' . $action);
+    }
+    public function selesai($action, $id)
+    {
+        $pengajuan = Pengajuan::findOrFail($id);
+        $pengajuan->status = 'selesai';
+        $pengajuan->returned_at = now();
+        $pengajuan->save();
+
+        toast()->success('Pengajuan berhasil diselesaikan.');
+        return redirect()->route('pengajuan.' . $action);
+    }
 }
