@@ -23,6 +23,7 @@ class Pengajuan extends Model
         'waktu_selesai',
         'alasan',
         'durasi_sewa',
+        'total_biaya',
         'surat_pengajuan',
         'tanggal_pengajuan',
         'approved_by',

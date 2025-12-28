@@ -37,6 +37,7 @@ class StorePengajuanRequest extends FormRequest
         // Add durasi_sewa validation for penyewaan
         if ($this->input('jenis') === 'penyewaan') {
             $rules['durasi_sewa'] = 'required|integer|min:1|max:365';
+            $rules['total_biaya'] = 'required|integer|min:0';
         }
 
         return $rules;
@@ -69,6 +70,9 @@ class StorePengajuanRequest extends FormRequest
             'durasi_sewa.integer' => 'Durasi sewa harus berupa angka.',
             'durasi_sewa.min' => 'Durasi sewa minimal 1 hari.',
             'durasi_sewa.max' => 'Durasi sewa maksimal 365 hari.',
+            'total_biaya.required' => 'Total biaya wajib diisi.',
+            'total_biaya.integer' => 'Total biaya harus berupa angka.',
+            'total_biaya.min' => 'Total biaya minimal 0.',
             'surat_pengajuan.file' => 'Surat pengajuan harus berupa file.',
             'surat_pengajuan.mimes' => 'Surat pengajuan harus berformat PDF.',
             'surat_pengajuan.max' => 'Ukuran surat pengajuan maksimal :max KB.',

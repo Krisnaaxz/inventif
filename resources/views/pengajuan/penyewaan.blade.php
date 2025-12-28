@@ -23,7 +23,7 @@
                 {{-- end form pengajuan --}}
             </div>
 
-            <table id="pengajuan-table" class="table table-striped table-bordered">
+            <table id="pengajuan-table" class="table table-striped table-bordered text-xs">
                 <thead>
                     <tr>
                         <th class="text-center" style="width: 15px">No</th>
@@ -31,7 +31,8 @@
                         <th>Tanggal Mulai</th>
                         <th>Tanggal Selesai</th>
                         <th>Durasi (Hari)</th>
-                        <th>Barang yang Disewa</th>
+                        <th>Barang Disewa</th>
+                        <th>Total Biaya</th>
                         <th>Status</th>
                         <th class="text-center" style="width: 150px">Opsi</th>
                     </tr>
@@ -57,6 +58,14 @@
                                 @endif
                             </td>
                             <td>
+                                @if ($item->total_biaya)
+                                    <strong class="text-xs">Rp
+                                        {{ number_format($item->total_biaya, 0, ',', '.') }}</strong>
+                                @else
+                                    -
+                                @endif
+                            </td>
+                            <td>
                                 <span
                                     class="badge badge-{{ $item->status === 'disetujui' ? 'success' : ($item->status === 'ditolak' ? 'danger' : 'warning') }}">
                                     {{ ucfirst($item->status) }}
@@ -70,7 +79,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="8" class="text-center">Belum ada pengajuan penyewaan.</td>
+                            <td colspan="9" class="text-center">Belum ada pengajuan penyewaan.</td>
                         </tr>
                     @endforelse
                 </tbody>

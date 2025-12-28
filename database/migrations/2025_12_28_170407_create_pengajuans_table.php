@@ -20,6 +20,7 @@ return new class extends Migration
             $table->time('waktu_selesai');
             $table->text('alasan');
             $table->integer('durasi_sewa')->nullable();
+            $table->integer('total_biaya')->nullable();
             $table->string('surat_pengajuan');
             $table->timestamp('tanggal_pengajuan')->nullable();
             $table->foreignId('approved_by')->nullable()->constrained('users')->onDelete('set null');

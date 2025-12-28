@@ -93,6 +93,7 @@ class PengajuanController extends Controller
             'waktu_mulai' => $request->waktu_mulai,
             'waktu_selesai' => $request->waktu_selesai,
             'durasi_sewa' => $request->jenis === 'penyewaan' ? $request->durasi_sewa : null,
+            'total_biaya' => $request->jenis === 'penyewaan' ? $request->total_biaya : null,
             'alasan' => $request->keperluan,
             'surat_pengajuan' => $request->file('surat_pengajuan') ? $request->file('surat_pengajuan')->store('surat_pengajuan', 'public') : null,
             'tanggal_pengajuan' => now(),
