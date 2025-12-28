@@ -5,10 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Pengajuan extends Model
 {
     use HasFactory;
+
+    public $timestamps = false;
 
     protected $fillable = [
         'user_id',
@@ -28,8 +31,11 @@ class Pengajuan extends Model
     ];
 
     protected $casts = [
-        'tanggal_pinjam' => 'date',
-        'tanggal_kembali' => 'date',
+        'tanggal_mulai' => 'date',
+        'tanggal_selesai' => 'date',
+        'tanggal_pengajuan' => 'datetime',
+        'waktu_mulai' => 'datetime:H:i',
+        'waktu_selesai' => 'datetime:H:i',
         'approved_at' => 'datetime',
         'returned_at' => 'datetime',
         'jenis' => 'string',
@@ -42,9 +48,11 @@ class Pengajuan extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function inventaris(): BelongsTo
+    public function inventaris()
     {
-        return $this->belongsTo(Inventaris::class);
+        return $this->belongsToMany(Inventaris::class, 'pengajuan_items')
+                    ->withPivot('jumlah', 'kondisi')
+                    ->withTimestamps();
     }
 
     public function approvedBy(): BelongsTo

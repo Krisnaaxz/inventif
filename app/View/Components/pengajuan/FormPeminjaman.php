@@ -24,7 +24,7 @@ class FormPeminjaman extends Component
         // } else {
         //     \Log::info('No inventaris received in component');
         // }
-        
+
         if($id){
             $peminjaman = Pengajuan::findOrFail($id);
             $this->id = $peminjaman->id;

@@ -75,7 +75,7 @@
                         <div class="form-group mb-3">
                             <label class="form-label">Pilih Barang yang Dipinjam</label>
                             <div class="border p-3" style="max-height: 200px; overflow-y: auto;">
-                                @if(isset($inventaris) && $inventaris && $inventaris->count() > 0)
+                                @if (isset($inventaris) && $inventaris && $inventaris->count() > 0)
                                     @foreach ($inventaris as $item)
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox"
@@ -99,26 +99,24 @@
                         </div>
                         {{-- 7. surat pengajuan --}}
                         <div class="form-group mb-3">
-                            <label for="surat_pengajuan" class="form-label">Surat Pengajuan</label>
+                            <label for="surat_pengajuan" class="form-label">Surat Pengajuan (PDF, max 2MB)</label>
                             <input type="file" class="form-control" id="surat_pengajuan" name="surat_pengajuan"
                                 value="{{ old('surat_pengajuan', $surat_pengajuan ?? '') }}">
                             @error('surat_pengajuan')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
                         </div>
-
-
                         {{-- hidden --}}
                         {{-- 8. jenis --}}
                         <input type="hidden" name="jenis" value="peminjaman">
                         {{-- 9. status --}}
                         <input type="hidden" name="status" value="menunggu">
-                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-white" data-bs-dismiss="modal">Batal</button>
                     <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
+                </form>
             </div>
         </div>
     </div>
