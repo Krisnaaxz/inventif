@@ -19,23 +19,87 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
+        $user = [
+            [
             'name' => env('USER_NAME', 'HIMAIF'),
             'role' => 'admin',
             'email' => env('USER_EMAIL', 'admin@admin.com'),
             'password' => Hash::make(env('USER_PASSWORD', 'admin123')),
-        ]);
-        User::factory()->create([
+            ],
+            [
             'name' => 'HIMAKI',
             'role' => 'organisasi',
             'email' => 'himaki@unud.com',
             'password' => Hash::make('himaki123'),
-        ]);
-        User::factory()->create([
+            ],
+            [
+            'name' => 'HIMAFI',
+            'role' => 'organisasi',
+            'email' => 'himafi@unud.com',
+            'password' => Hash::make('himafi123'),
+            ],
+            [
+            'name' => 'HIMABIO',
+            'role' => 'organisasi',
+            'email' => 'himabio@unud.com',
+            'password' => Hash::make('himabio123'),
+            ],
+            [
+            'name' => 'HIMATIKA',
+            'role' => 'organisasi',
+            'email' => 'himatika@unud.com',
+            'password' => Hash::make('himatika123'),
+            ],
+            [
+            'name' => 'HIMAFARMA',
+            'role' => 'organisasi',
+            'email' => 'himafarma@unud.com',
+            'password' => Hash::make('himafarma123'),
+            ],
+            [
+            'name' => 'BEM FMIPA',
+            'role' => 'organisasi',
+            'email' => 'bemfmipa@unud.com',
+            'password' => Hash::make('bemfmipa123'),
+            ],
+            [
+            'name' => 'DPM FMIPA',
+            'role' => 'organisasi',
+            'email' => 'dpmfmipa@unud.com',
+            'password' => Hash::make('dpmfmipa123'),
+            ],
+            [
             'name' => 'mangkriisnaa',
             'role' => 'umum',
-            'email' => 'mangkriisnaa@example.com',
+            'email' => 'mangkriisnaa@unud.com',
             'password' => Hash::make('12345678'),
-        ]);
+            ],
+        ];
+        User::insert($user);
+
+        $kategori = [
+            [
+                'nama_kategori' => 'Kabel'
+            ],
+            [
+                'nama_kategori' => 'Adapter'
+            ],
+            [
+                'nama_kategori' => 'Sound'
+            ],
+            [
+                'nama_kategori' => 'Microphone'
+            ],
+            [
+                'nama_kategori' => 'Proyektor'
+            ],
+            [
+                'nama_kategori' => 'Perkakas'
+            ],
+            [
+                'nama_kategori' => 'Alat Kebersihan'
+            ]
+        ];
+        KategoriInventaris::insert($kategori);
     }
 }
