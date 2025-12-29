@@ -134,19 +134,19 @@
         <div class="row">
             <div class="col-12">
                 <h3 class="mb-3">Ikuti Kami</h3>
-                <div class="d-flex justify-content-center gap-3">
-                    <a href="https://instagram.com/himaif_udayana" target="_blank" class="btn btn-lg border-outline"
-                        style="background: linear-gradient(135deg, #E26B44 0%, #C8376E 100%); border: none; color: white;"></i>
+                <div class="d-flex flex-wrap justify-content-center gap-2 gap-md-3">
+                    <a href="https://instagram.com/himaif_udayana" target="_blank" class="btn border-outline"
+                        style="background: linear-gradient(135deg, #E26B44 0%, #C8376E 100%); border: none; color: white; min-width: 120px;"></i>
                         <i class="fab fa-instagram"
                             style="background: linear-gradient(135deg, #570404 0%, #FF3B3B 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"></i></i>
                         Instagram
                     </a>
-                    <a href="https://wa.me/+6285183037405" target="_blank" class="btn btn-outline btn-lg"
-                        style="background: linear-gradient(135deg, #0E8E3D 0%, #17AD71 100%); border: none; color: white;">
+                    <a href="https://wa.me/+6285183037405" target="_blank" class="btn btn-outline"
+                        style="background: linear-gradient(135deg, #0E8E3D 0%, #17AD71 100%); border: none; color: white; min-width: 120px;">
                         <i class="fab fa-whatsapp"></i> WhatsApp
                     </a>
-                    <a href="https://tiktok.com/@himaif_udayana" target="_blank" class="btn btn-outline-dark btn-lg"
-                        style="background: linear-gradient(135deg, #000000 0%, #434343 100%); border: none; color: white;">
+                    <a href="https://tiktok.com/@himaif_udayana" target="_blank" class="btn btn-outline-dark"
+                        style="background: linear-gradient(135deg, #000000 0%, #434343 100%); border: none; color: white; min-width: 120px;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor"
                             class="bi bi-tiktok" viewBox="0 0 16 16">
                             <path
@@ -154,8 +154,8 @@
                         </svg> TikTok
                     </a>
                     <a href="https://www.linkedin.com/company/himaif-udayana/" target="_blank"
-                        class="btn btn-outline-info btn-lg"
-                        style="background: linear-gradient(135deg, #0A66C2 0%, #004182 100%); border: none; color: white;">
+                        class="btn btn-outline-info"
+                        style="background: linear-gradient(135deg, #0A66C2 0%, #004182 100%); border: none; color: white; min-width: 120px;">
                         <i class="fab fa-linkedin"></i> LinkedIn
                     </a>
                 </div>
