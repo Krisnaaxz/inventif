@@ -31,6 +31,12 @@ class UpdateProfileRequest extends FormRequest
                 'max:255',
                 Rule::unique('users')->ignore(auth()->id())
             ],
+            'profile_photo' => [
+                'nullable',
+                'image',
+                'mimes:jpeg,png,jpg,gif',
+                'max:2048' // 2MB
+            ],
             'current_password' => [
                 'nullable',
                 'string',

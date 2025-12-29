@@ -7,7 +7,7 @@
                     <h4 class="card-title">Edit Profil</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('profile.update') }}" method="POST">
+                    <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
 
@@ -30,6 +30,21 @@
                                     @error('email')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="profile_photo">Foto Profil</label>
+                                    <input type="file" class="form-control @error('profile_photo') is-invalid @enderror"
+                                        id="profile_photo" name="profile_photo" accept="image/*">
+                                    @error('profile_photo')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                    <small class="form-text text-muted">Pilih file gambar (JPG, PNG, dll.) maksimal
+                                        2MB</small>
                                 </div>
                             </div>
                         </div>
@@ -109,13 +124,12 @@
                     <h4 class="card-title">Informasi Akun</h4>
                 </div>
                 <div class="card-body text-center">
-                    <div class="avatar avatar-xl mb-3">
-                        <img src="{{ asset('layout') }}/assets/img/profile_temp.png" alt="Avatar"
-                            class="avatar-img rounded-circle">
+                    <div class="">
+                        <img src="{{ $user->profile_photo_url }}" alt="Avatar" class="avatar-img rounded-circle"
+                            style="width: 120px; height: 120px; object-fit: cover;">
                     </div>
                 </div>
             </div>
-
             <div class="card mt-3">
                 <div class="card-header">
                     <h4 class="card-title">Statistik</h4>

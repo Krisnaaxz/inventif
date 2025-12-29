@@ -86,8 +86,8 @@
                                 <a class="dropdown-toggle profile-pic" data-bs-toggle="dropdown" href="#"
                                     aria-expanded="false">
                                     <div class="avatar-sm">
-                                        <img src="{{ asset('layout') }}/assets/img/profile_temp.png" alt="..."
-                                            class="avatar-img rounded-circle" />
+                                        <img src="{{ auth()->user()->profile_photo_url }}" alt="Avatar"
+                                            class="avatar-img rounded-circle" style="object-fit: cover;">
                                     </div>
                                     <span class="profile-username">
                                         <span class="op-7">Hi,</span>
@@ -98,8 +98,8 @@
                                     <div class="dropdown-user-scroll scrollbar-outer">
                                         <div class="user-box">
                                             <div class="avatar-lg">
-                                                <img src="{{ asset('layout') }}/assets/img/profile_temp.png"
-                                                    alt="image profile" class="avatar-img rounded" />
+                                                <img src="{{ auth()->user()->profile_photo_url }}" alt="Avatar"
+                                                    class="avatar-img rounded-circle" style="object-fit: cover;">
                                             </div>
                                             <div class="u-text">
                                                 <h4>{{ auth()->user()->name }} - {{ ucfirst(auth()->user()->role) }}
