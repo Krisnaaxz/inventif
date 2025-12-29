@@ -20,6 +20,8 @@
                     "Font Awesome 5 Regular",
                     "Font Awesome 5 Brands",
                     "simple-line-icons",
+                    "flaticon",
+                    'aria-label'
                 ],
                 urls: ["{{ asset('layout') }}/assets/css/fonts.min.css"],
             },
