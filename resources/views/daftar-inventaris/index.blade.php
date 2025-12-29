@@ -5,7 +5,7 @@
         <div class="card-body py-5">
             <div class="row pb-5">
                 {{-- filter --}}
-                <div class="col-4">
+                <div class="col-md-4 col-12 mb-3 mb-md-0">
                     <div class="d-flex gap-2 align-items-center border border-secondary-subtle rounded">
                         <div class="flex-grow-1">
                             <x-filter-by-field term="search" placeholder="Cari inventaris..." />
@@ -16,53 +16,55 @@
                 {{-- end filter --}}
                 {{-- form inventaris --}}
                 @if (auth()->user()->role === 'admin')
-                    <div class="col-8 d-flex justify-content-end">
+                    <div class="col-md-8 col-12 d-flex justify-content-end">
                         <x-inventaris.form-inventaris />
                     </div>
                 @endif
                 {{-- end form inventaris --}}
             </div>
 
-            <table id="daftar-inventaris-table" class="table table-striped table-bordered">
-                <thead>
-                    <tr>
-                        <th class="text-center" style="width: 15px">No</th>
-                        <th>Nama Inventaris</th>
-                        <th>Kategori</th>
-                        <th>Jumlah</th>
-                        <th class="text-center" style="width: 150px">Opsi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse ($inventaris as $index => $item)
+            <div class="table-responsive">
+                <table id="daftar-inventaris-table" class="table table-striped table-bordered">
+                    <thead>
                         <tr>
-                            <td class="text-center">{{ $index + 1 }}</td>
-                            <td>{{ $item->nama_inventaris }}</td>
-                            <td>{{ $item->kategori->nama_kategori }}</td>
-                            <td>{{ $item->jumlah_inventaris }}</td>
-                            <td>
-                                <div class="d-flex justify-content-center gap-2">
-                                    <x-view-meta id="{{ $item->id }}" route="inventaris.daftar-inventaris.show" />
-                                </div>
-                            </td>
+                            <th class="text-center" style="width: 15px">No</th>
+                            <th>Nama Inventaris</th>
+                            <th>Kategori</th>
+                            <th>Jumlah</th>
+                            <th class="text-center" style="width: 150px">Opsi</th>
                         </tr>
-                    @empty
-                        <tr>
-                            <td colspan="5" class="text-center">Data Inventaris Kosong.</td>
-                        </tr>
-                    @endforelse
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @forelse ($inventaris as $index => $item)
+                            <tr>
+                                <td class="text-center">{{ $index + 1 }}</td>
+                                <td>{{ $item->nama_inventaris }}</td>
+                                <td>{{ $item->kategori->nama_kategori }}</td>
+                                <td>{{ $item->jumlah_inventaris }}</td>
+                                <td>
+                                    <div class="d-flex justify-content-center gap-2">
+                                        <x-view-meta id="{{ $item->id }}" route="inventaris.daftar-inventaris.show" />
+                                    </div>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="5" class="text-center">Data Inventaris Kosong.</td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
             {{-- pagination --}}
-            <div class="row-10 py-3 d-flex justify-content-between align-items-center">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center py-3 gap-2">
                 {{-- jumlah data pagination --}}
-                <div class="col-4 d-flex justify-content-start align-items-center gap-2">
+                <div class="d-flex justify-content-start align-items-center gap-2">
                     <p class="mb-0">Tampilkan</p>
                     <x-per-page-option />
                     <p class="mb-0">data per halaman</p>
                 </div>
                 {{-- pagination links --}}
-                <div class="col-8 d-flex justify-content-end">
+                <div class="d-flex justify-content-center justify-content-md-end">
                     {{ $inventaris->links() }}
                 </div>
             </div>
