@@ -28,6 +28,10 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('inventaris')->name('inventaris.')->group(function () {
         Route::resource('daftar-inventaris', InventarisController::class);
     });
+
+    // Profile Management Routes
+    Route::get('profile', [HomeController::class, 'profile'])->name('profile.edit');
+    Route::put('profile', [HomeController::class, 'updateProfile'])->name('profile.update');
 });
 
 // Admin Routes

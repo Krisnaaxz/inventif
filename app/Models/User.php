@@ -59,4 +59,12 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    /**
+     * Get the pengajuans for the user.
+     */
+    public function pengajuans()
+    {
+        return $this->hasMany(Pengajuan::class);
+    }
 }

@@ -106,12 +106,16 @@
                                                 </h4>
                                                 <p class="text-muted">{{ auth()->user()->email }}</p>
                                                 <div class="dropdown-divider"></div>
+                                                {{-- Link Edit Profil --}}
+                                                <a class="dropdown-item" href="{{ route('profile.edit') }}">
+                                                    <i class="fas fa-user-edit me-2"></i> Edit Profil
+                                                </a>
+                                                <div class="dropdown-divider"></div>
                                                 {{-- Tombol Logout --}}
-                                                <a class="dropdown-item btn btn-secondary btn-sm text-white"
-                                                    href="{{ route('logout') }}"
+                                                <a class="dropdown-item text-danger" href="{{ route('logout') }}"
                                                     onclick="event.preventDefault();
                                                             document.getElementById('logout-form').submit();">
-                                                    {{ __('Logout') }}
+                                                    <i class="fas fa-sign-out-alt me-2"></i> Logout
                                                 </a>
                                                 {{-- Form Logout Hidden --}}
                                                 <form id="logout-form" action="{{ route('logout') }}" method="POST"
