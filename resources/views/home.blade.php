@@ -69,7 +69,7 @@
             <div class="col-md-3 mb-3">
                 <div class="card h-100">
                     <div class="card-body text-center">
-                        <i class="fas fa-tags fa-3x text-primary mb-3"
+                        <i class="fas fa-file-alt fa-3x text-primary mb-3"
                             style="background: linear-gradient(135deg, #14379A 0%, #4285F4 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"></i>
                         <h5 class="card-title">Data Pengajuan</h5>
                         <p class="card-text">Lihat semua pengajuan inventaris</p>

@@ -50,7 +50,7 @@ class sidebar extends Component
                 'label' => 'Pengajuan',
                 'route' => 'pengajuan',
                 'isActive' => request()->routeIs('pengajuan.*'),
-                'icon' => 'fas fa-tags',
+                'icon' => 'fas fa-file-alt',
                 'isDropdown' => true,
                 'items' => [
                     [
@@ -87,7 +87,7 @@ class sidebar extends Component
                 'label' => 'Pengajuan',
                 'route' => 'pengajuan',
                 'isActive' => request()->routeIs('pengajuan.*'),
-                'icon' => 'fas fa-tags',
+                'icon' => 'fas fa-file-alt',
                 'isDropdown' => true,
                 'items' => [
                     [
@@ -121,7 +121,7 @@ class sidebar extends Component
                 'label' => 'Pengajuan',
                 'route' => 'pengajuan',
                 'isActive' => request()->routeIs('pengajuan.*'),
-                'icon' => 'fas fa-tags',
+                'icon' => 'fas fa-file-alt',
                 'isDropdown' => true,
                 'items' => [
                     [
