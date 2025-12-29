@@ -4,8 +4,8 @@
     <div class="sidebar-logo">
         <div class="logo-header">
             <a href="/home" class="logo" data-background-color="light">
-                <img src="{{ asset('layout') }}/assets/img/InventIF_logo.png" alt="navbar brand"
-                    class="mt-4 navbar-brand d-flex align-items-center justify-content-center" height="180" />
+                <img src="{{ asset('layout') }}/assets/img/logo_inventif2.png" alt="navbar brand"
+                    class="mt-4 navbar-brand d-flex align-items-center justify-content-center" height="70" />
             </a>
             <div class="nav-toggle btn-gray">
                 <button class="btn btn-toggle toggle-sidebar btn-light" title="Toggle Sidebar">
