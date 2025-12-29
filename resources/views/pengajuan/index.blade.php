@@ -33,17 +33,6 @@
                     </div>
                 </div>
                 {{-- end filter --}}
-                {{-- form pengajuan --}}
-                @if (auth()->user()->role === 'umum')
-                    <div class="col-8 d-flex justify-content-end">
-                        <x-pengajuan.form-penyewaan :inventaris="$inventaris" />
-                    </div>
-                @elseif (auth()->user()->role === 'organisasi')
-                    <div class="col-8 d-flex justify-content-end">
-                        <x-pengajuan.form-peminjaman :inventaris="$inventaris" />
-                    </div>
-                @endif
-                {{-- end form pengajuan --}}
             </div>
 
             <div class="table-responsive">
