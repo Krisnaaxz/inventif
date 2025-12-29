@@ -1,3 +1,4 @@
+{{-- Layout Utama Aplikasi InventIF --}}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +8,8 @@
     <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
     <link rel="icon" href="{{ asset('layout') }}/assets/img/InventIF_logo.png" type="image/x-icon" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <!-- Fonts and icons -->
+
+    {{-- Fonts dan Icons --}}
     <script src="{{ asset('layout') }}/assets/js/plugin/webfont/webfont.min.js"></script>
     <script>
         WebFont.load({
@@ -31,26 +33,30 @@
         });
     </script>
 
-    <!-- CSS Files -->
+    {{-- CSS Files --}}
     <link rel="stylesheet" href="{{ asset('layout') }}/assets/css/bootstrap.min.css" />
     <link rel="stylesheet" href="{{ asset('layout') }}/assets/css/plugins.min.css" />
     <link rel="stylesheet" href="{{ asset('layout') }}/assets/css/kaiadmin.min.css" />
-
-    <!-- CSS Just for demo purpose, don't include it in your project -->
+    {{-- CSS untuk demo, hapus di production --}}
     <link rel="stylesheet" href="{{ asset('layout') }}/assets/css/demo.css" />
 </head>
 
 <body>
+    {{-- SweetAlert untuk notifikasi --}}
     @include('sweetalert::alert')
-    <div class="wrapper">
-        <!-- Sidebar -->
-        <x-sidebar />
-        <!-- End Sidebar -->
 
+    {{-- Wrapper Utama --}}
+    <div class="wrapper">
+        {{-- Sidebar Navigasi --}}
+        <x-sidebar />
+        {{-- End Sidebar --}}
+
+        {{-- Panel Utama --}}
         <div class="main-panel">
+            {{-- Header Utama --}}
             <div class="main-header">
                 <div class="main-header-logo">
-                    <!-- Logo Header -->
+                    {{-- Logo Header --}}
                     <div class="logo-header" data-background-color="dark">
                         <a href="index.html" class="logo">
                             <img src="{{ asset('layout') }}/assets/img/profile_temp.png" alt="navbar brand"
@@ -68,12 +74,14 @@
                             <i class="gg-more-vertical-alt"></i>
                         </button>
                     </div>
-                    <!-- End Logo Header -->
+                    {{-- End Logo Header --}}
                 </div>
-                <!-- Navbar Header -->
+
+                {{-- Navbar Header --}}
                 <nav class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom">
                     <div class="container-fluid">
                         <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
+                            {{-- User Dropdown --}}
                             <li class="nav-item topbar-user dropdown hidden-caret">
                                 <a class="dropdown-toggle profile-pic" data-bs-toggle="dropdown" href="#"
                                     aria-expanded="false">
@@ -98,12 +106,14 @@
                                                 </h4>
                                                 <p class="text-muted">{{ auth()->user()->email }}</p>
                                                 <div class="dropdown-divider"></div>
+                                                {{-- Tombol Logout --}}
                                                 <a class="dropdown-item btn btn-secondary btn-sm text-white"
                                                     href="{{ route('logout') }}"
                                                     onclick="event.preventDefault();
                                                             document.getElementById('logout-form').submit();">
                                                     {{ __('Logout') }}
                                                 </a>
+                                                {{-- Form Logout Hidden --}}
                                                 <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                                     class="d-none">
                                                     @csrf
@@ -116,51 +126,90 @@
                         </ul>
                     </div>
                 </nav>
-                <!-- End Navbar -->
+                {{-- End Navbar --}}
             </div>
 
+            {{-- Konten Utama --}}
             <div class="container">
                 <div class="page-inner">
+                    {{-- Header Halaman --}}
                     <div class="page-header">
                         <h4 class="page-title">@yield('page_title', 'InventIF')</h4>
+                        {{-- Breadcrumb atau navigasi tambahan bisa ditambahkan di sini --}}
+                        @yield('breadcrumb')
                     </div>
+
+                    {{-- Flash Messages --}}
+                    @if (session('success'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <i class="fas fa-check-circle"></i> {{ session('success') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    @endif
+
+                    @if (session('error'))
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <i class="fas fa-exclamation-triangle"></i> {{ session('error') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    @endif
+
+                    @if (session('warning'))
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <i class="fas fa-exclamation-circle"></i> {{ session('warning') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    @endif
+
+                    @if (session('info'))
+                        <div class="alert alert-info alert-dismissible fade show" role="alert">
+                            <i class="fas fa-info-circle"></i> {{ session('info') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    @endif
+
+                    {{-- Konten Dinamis --}}
                     @yield('content')
                 </div>
             </div>
         </div>
     </div>
-    <!--   Core JS Files   -->
+    {{-- JavaScript Libraries --}}
+    {{-- Core JS Files --}}
     <script src="{{ asset('layout') }}/assets/js/core/jquery-3.7.1.min.js"></script>
     <script src="{{ asset('layout') }}/assets/js/core/popper.min.js"></script>
     <script src="{{ asset('layout') }}/assets/js/core/bootstrap.min.js"></script>
 
-    <!-- jQuery Scrollbar -->
+    {{-- Plugin JS Files --}}
+    {{-- jQuery Scrollbar --}}
     <script src="{{ asset('layout') }}/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
 
-    <!-- Chart JS -->
+    {{-- Chart JS --}}
     <script src="{{ asset('layout') }}/assets/js/plugin/chart.js/chart.min.js"></script>
 
-    <!-- jQuery Sparkline -->
+    {{-- jQuery Sparkline --}}
     <script src="{{ asset('layout') }}/assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js"></script>
 
-    <!-- Chart Circle -->
+    {{-- Chart Circle --}}
     <script src="{{ asset('layout') }}/assets/js/plugin/chart-circle/circles.min.js"></script>
 
-    <!-- Datatables -->
+    {{-- Datatables --}}
     <script src="{{ asset('layout') }}/assets/js/plugin/datatables/datatables.min.js"></script>
 
-    <!-- Bootstrap Notify -->
+    {{-- Bootstrap Notify --}}
     <script src="{{ asset('layout') }}/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
 
-    <!-- jQuery Vector Maps -->
+    {{-- jQuery Vector Maps --}}
     <script src="{{ asset('layout') }}/assets/js/plugin/jsvectormap/jsvectormap.min.js"></script>
     <script src="{{ asset('layout') }}/assets/js/plugin/jsvectormap/world.js"></script>
 
-    <!-- Sweet Alert -->
+    {{-- Sweet Alert --}}
     <script src="{{ asset('layout') }}/assets/js/plugin/sweetalert/sweetalert.min.js"></script>
 
-    <!-- Kaiadmin JS -->
+    {{-- Kaiadmin JS --}}
     <script src="{{ asset('layout') }}/assets/js/kaiadmin.min.js"></script>
+
+    {{-- Stack untuk script tambahan --}}
     @stack('script')
 </body>
 
