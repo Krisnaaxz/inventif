@@ -5,13 +5,31 @@
         <div class="card-body py-5">
             <div class="row pb-5">
                 {{-- filter --}}
-                <div class="col-4">
+                <div class="col-6">
                     <div class="d-flex gap-2 align-items-center border border-secondary-subtle rounded">
                         <div class="flex-grow-1">
                             <x-filter-by-field term="search"
                                 placeholder="Cari pengajuan{{ auth()->user()->role === 'organisasi' ? ' peminjaman' : (auth()->user()->role === 'umum' ? ' penyewaan' : '') }}..." />
                         </div>
                         <x-button-reset-filter route="pengajuan.index" />
+                        @if (auth()->user()->role === 'admin')
+                            <div class="border-start ps-3">
+                                <form method="GET" action="{{ route('pengajuan.index') }}">
+                                    <input type="hidden" name="search" value="{{ request('search') }}">
+                                    <input type="hidden" name="perPage" value="{{ request('perPage') }}">
+                                    <select name="jenis" id="jenis-filter" class="form-select border-0"
+                                        onchange="this.form.submit()">
+                                        <option value="">Semua Jenis</option>
+                                        <option value="peminjaman"
+                                            {{ request('jenis') === 'peminjaman' ? 'selected' : '' }}>
+                                            Peminjaman</option>
+                                        <option value="penyewaan" {{ request('jenis') === 'penyewaan' ? 'selected' : '' }}>
+                                            Penyewaan
+                                        </option>
+                                    </select>
+                                </form>
+                            </div>
+                        @endif
                     </div>
                 </div>
                 {{-- end filter --}}

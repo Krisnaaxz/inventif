@@ -25,7 +25,6 @@ class PengajuanController extends Controller
         if ($search) {
             $query->where(function ($q) use ($search) {
                 $q->where('status', 'like', '%' . $search . '%')
-                  ->orWhere('jenis', 'like', '%' . $search . '%')
                   ->orWhereHas('user', function ($userQuery) use ($search) {
                       $userQuery->where('name', 'like', '%' . $search . '%');
                   })
@@ -40,8 +39,10 @@ class PengajuanController extends Controller
             $query->where('jenis', 'peminjaman');
         } elseif (auth()->user()->role === 'umum') {
             $query->where('jenis', 'penyewaan');
+        } elseif (auth()->user()->role === 'admin' && request('jenis')) {
+            $query->where('jenis', request('jenis'));
         }
-        // Admin melihat semua pengajuan tanpa filter jenis
+        // Admin melihat semua pengajuan tanpa filter jenis jika tidak ada parameter
         ConfirmDelete('Apakah Anda yakin ingin menghapus pengajuan ini?');
         $pengajuans = $query->orderBy('tanggal_pengajuan', 'desc')->paginate($perPage)->appends(request()->query());
         return view('pengajuan.index', compact('pageTitle', 'pengajuans', 'inventaris'));
