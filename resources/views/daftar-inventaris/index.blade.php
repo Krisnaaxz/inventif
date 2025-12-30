@@ -3,9 +3,9 @@
 @section('content')
     <div class="card">
         <div class="card-body py-5">
-            <div class="row pb-5">
+            <div class="row pb-5 g-3">
                 {{-- filter --}}
-                <div class="col-md-4 col-12 mb-3 mb-md-0">
+                <div class="col-md-4 col-12">
                     <div class="d-flex gap-2 align-items-center border border-secondary-subtle rounded">
                         <div class="flex-grow-1">
                             <x-filter-by-field term="search" placeholder="Cari inventaris..." />
@@ -13,10 +13,16 @@
                         <x-button-reset-filter route="inventaris.daftar-inventaris.index" />
                     </div>
                 </div>
+                <div class="col-md-3 col-12">
+                    <div class="border border-secondary-subtle rounded" style="max-width: 200px;">
+                        <x-filter-by-options :options="$kategori" term="kategori" defaultValue="Semua Kategori"
+                            field="nama_kategori" />
+                    </div>
+                </div>
                 {{-- end filter --}}
                 {{-- form inventaris --}}
                 @if (auth()->user()->role === 'admin')
-                    <div class="col-md-8 col-12 d-flex justify-content-end">
+                    <div class="col-md-5 col-12 d-flex justify-content-md-end justify-content-start">
                         <x-inventaris.form-inventaris />
                     </div>
                 @endif

@@ -4,27 +4,36 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\storeInventarisRequest;
 use App\Models\Inventaris;
+use App\Models\KategoriInventaris;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class InventarisController extends Controller
 {
-    public $pageTitle = 'Data Inventaris';
+    public $pageTitle = 'Daftar Inventaris';
     public function index()
     {
+        $kategori = KategoriInventaris::all();
         $query = Inventaris::query();
         $perPage = request()->query('perPage') ?? 10;
         $pageTitle = $this->pageTitle;
         $query->with('kategori:id,nama_kategori');
         $search = request()->query('search');
+        $rKategori = request()->query('kategori');
 
         if ($search) {
             $query = Inventaris::where('nama_inventaris', 'like', '%' . $search . '%');
         }
 
+        if ($rKategori) {
+            $query->whereHas('kategori', function ($q) use ($rKategori) {
+                $q->where('id', $rKategori);
+            });
+        }
+
         $inventaris = $query->orderBy('created_at', 'desc')->paginate($perPage)->appends(request()->query());
         confirmDelete('Apakah Anda yakin ingin menghapus data inventaris ini?');
-        return view('daftar-inventaris.index', compact('pageTitle', 'inventaris'));
+        return view('daftar-inventaris.index', compact('pageTitle', 'inventaris', 'kategori'));
     }
 
     public function store(storeInventarisRequest $request)
