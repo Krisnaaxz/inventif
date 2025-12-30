@@ -36,9 +36,9 @@ class PengajuanController extends Controller
 
         // Filter berdasarkan role
         if (auth()->user()->role === 'organisasi') {
-            $query->where('jenis', 'peminjaman');
+            $query->where('jenis', 'peminjaman')->where('user_id', auth()->user()->id);
         } elseif (auth()->user()->role === 'umum') {
-            $query->where('jenis', 'penyewaan');
+            $query->where('jenis', 'penyewaan')->where('user_id', auth()->user()->id);
         } elseif (auth()->user()->role === 'admin' && request('jenis')) {
             $query->where('jenis', request('jenis'));
         }
