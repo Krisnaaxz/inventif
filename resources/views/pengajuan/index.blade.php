@@ -59,9 +59,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($pengajuans as $index => $item)
+                        @forelse ($pengajuans->whereIn('status', ['selesai', 'dibatalkan', 'ditolak']) as $index => $item)
                             <tr>
-                                <td class="text-center">{{ $index + 1 }}</td>
+                                <td class="text-center">{{ $loop->iteration }}</td>
                                 @if (auth()->user()->role === 'admin')
                                     <td>{{ ucfirst($item->jenis) }}</td>
                                 @endif
