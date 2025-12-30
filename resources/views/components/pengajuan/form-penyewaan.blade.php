@@ -240,9 +240,9 @@
                         return;
                     }
 
-                    // Add durasi sewa days (durasi sewa - 1 karena hari pertama sudah termasuk)
+                    // Add durasi sewa days
                     const endDate = new Date(startDate);
-                    endDate.setDate(startDate.getDate() + (durasiSewa - 1));
+                    endDate.setDate(startDate.getDate() + durasiSewa);
 
                     // Format to YYYY-MM-DD
                     const year = endDate.getFullYear();
@@ -306,7 +306,7 @@
 
                         console.log(
                             `Item ${inventarisId}: ${harga} × ${jumlah} × ${durasiSewa} = ${itemBiaya}`
-                            );
+                        );
 
                     } catch (itemError) {
                         console.error('Error calculating biaya for item:', checkbox.value, itemError);
