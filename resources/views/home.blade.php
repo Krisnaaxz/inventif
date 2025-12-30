@@ -76,7 +76,7 @@
                     </div>
                 </div>
             </div>
-        @else
+            {{-- @else
             <!-- Quick Actions -->
             <div class="row mb-4">
                 <div class="col-12">
@@ -108,7 +108,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         @endif
 
         <!-- SOP and Templates -->
