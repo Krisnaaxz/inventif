@@ -14,7 +14,7 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public $pageTitle = 'Manage Users';
+    public $pageTitle = 'Kelola Pengguna';
     public function index()
     {
         $pageTitle = $this->pageTitle;

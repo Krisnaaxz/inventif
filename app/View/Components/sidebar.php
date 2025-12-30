@@ -16,14 +16,14 @@ class sidebar extends Component
     {
         $this->links = [
             [
-                'label' => 'Dashboard',
+                'label' => 'Beranda',
                 'route' => 'home',
                 'isActive' => request()->routeIs('home'),
                 'icon' => 'fas fa-home',
                 'isDropdown' => false,
             ],
             [
-                'label' => 'Manage User',
+                'label' => 'Kelola Pengguna',
                 'route' => 'manage-user.index',
                 'isActive' => request()->routeIs('manage-user.*'),
                 'icon' => 'fas fa-users-cog',
@@ -70,7 +70,7 @@ class sidebar extends Component
         ];
         $this->organisasiLinks = [
             [
-                'label' => 'Dashboard',
+                'label' => 'Beranda',
                 'route' => 'home',
                 'isActive' => request()->routeIs('home'),
                 'icon' => 'fas fa-home',
@@ -104,7 +104,7 @@ class sidebar extends Component
 
         $this->umumLinks = [
             [
-                'label' => 'Dashboard',
+                'label' => 'Beranda',
                 'route' => 'home',
                 'isActive' => request()->routeIs('home'),
                 'icon' => 'fas fa-home',
