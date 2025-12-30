@@ -41,7 +41,7 @@
                         <tr>
                             <th class="text-center" style="width: 15px">No</th>
                             @if (auth()->user()->role === 'admin')
-                                <th>Jenis</th>
+                                <th style="width: fit-content">Jenis</th>
                             @endif
                             <th>Nama Pengaju</th>
                             <th>Tanggal Mulai</th>
@@ -49,7 +49,8 @@
                             @if (auth()->user()->role !== 'organisasi')
                                 <th>Durasi (Hari)</th>
                             @endif
-                            <th>Barang {{ auth()->user()->role === 'organisasi' ? 'Dipinjam' : 'Disewa' }}</th>
+                            <th style="width: max-content">Barang
+                                {{ auth()->user()->role === 'organisasi' ? 'Dipinjam' : 'Disewa' }}</th>
                             @if (auth()->user()->role !== 'organisasi')
                                 <th>Total Biaya</th>
                             @endif

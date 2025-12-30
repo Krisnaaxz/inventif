@@ -39,9 +39,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($pengajuans->where('status', '==', 'menunggu') as $index => $item)
+                        @forelse ($pengajuans->whereIn('status', ['menunggu', 'disetujui']) as $index => $item)
                             <tr>
-                                <td class="text-center">{{ $index + 1 }}</td>
+                                <td class="text-center">{{ $loop->iteration }}</td>
                                 <td>{{ $item->user->name }}</td>
                                 <td>{{ $item->tanggal_mulai->format('d M Y') }}</td>
                                 <td>{{ $item->tanggal_selesai->format('d M Y') }}</td>
