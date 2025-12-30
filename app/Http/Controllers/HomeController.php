@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateProfileRequest;
+use App\Models\User;
+use App\Models\Inventaris;
+use App\Models\Pengajuan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -27,7 +30,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $totalUsers = User::count();
+        $totalInventaris = Inventaris::count();
+        $totalPeminjaman = Pengajuan::where('jenis', 'peminjaman')->count();
+        $totalPenyewaan = Pengajuan::where('jenis', 'penyewaan')->count();
+
+        return view('home', compact('totalUsers', 'totalInventaris', 'totalPeminjaman', 'totalPenyewaan'));
     }
 
     /**

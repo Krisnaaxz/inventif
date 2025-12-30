@@ -1,4 +1,5 @@
 @extends('layouts.main')
+@section('page_title', 'Beranda')
 
 @section('content')
     <div class="container-fluid">
@@ -20,66 +21,95 @@
             </div>
         </div>
 
-        <!-- Quick Actions -->
-        <div class="row mb-4">
-            <div class="col-12">
-                <h3 class="mb-3">Navigasi Cepat</h3>
-            </div>
-            @if (auth()->user()->role === 'admin')
+        <!-- Statistics Section (Admin Only) -->
+        @if (auth()->user()->role === 'admin')
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h3 class="mb-3">Statistik Data</h3>
+                </div>
                 <div class="col-md-3 mb-3">
-                    <div class="card h-100">
+                    <div class="card h-100 shadow-sm">
                         <div class="card-body text-center">
                             <i class="fas fa-users fa-3x mb-3"
                                 style="background: linear-gradient(135deg, #D6780B 0%, #ECB246 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"></i>
-                            <h5 class="card-title">Manage User</h5>
-                            <p class="card-text">Kelola pengguna sistem</p>
-                            <a href="{{ route('manage-user.index') }}" class="btn"
-                                style="background: linear-gradient(135deg, #D6780B 0%, #ECB246 100%); border: none; color: white;">Manage
-                                User</a>
+                            <h5 class="card-title text-muted">Total Pengguna</h5>
+                            <h2 class="fw-bold"
+                                style="background: linear-gradient(135deg, #D6780B 0%, #ECB246 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                                {{ $totalUsers }}</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body text-center">
+                            <i class="fas fa-boxes fa-3x mb-3"
+                                style="background: linear-gradient(135deg, #199D5F 0%, #5BF57D 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"></i>
+                            <h5 class="card-title text-muted">Total Inventaris</h5>
+                            <h2 class="fw-bold"
+                                style="background: linear-gradient(135deg, #199D5F 0%, #5BF57D 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                                {{ $totalInventaris }}</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body text-center">
+                            <i class="fas fa-handshake fa-3x mb-3"
+                                style="background: linear-gradient(135deg, #1AAAE8 0%, #46CDEC 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"></i>
+                            <h5 class="card-title text-muted">Total Peminjaman</h5>
+                            <h2 class="fw-bold"
+                                style="background: linear-gradient(135deg, #1AAAE8 0%, #46CDEC 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                                {{ $totalPeminjaman }}</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body text-center">
+                            <i class="fas fa-money-bill-wave fa-3x mb-3"
+                                style="background: linear-gradient(135deg, #14379A 0%, #4285F4 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"></i>
+                            <h5 class="card-title text-muted">Total Penyewaan</h5>
+                            <h2 class="fw-bold"
+                                style="background: linear-gradient(135deg, #14379A 0%, #4285F4 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                                {{ $totalPenyewaan }}</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @else
+            <!-- Quick Actions -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h3 class="mb-3">Navigasi Cepat</h3>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-boxes fa-3x text-success mb-3"
+                                style="background: linear-gradient(135deg, #199D5F 0%, #5BF57D 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"></i>
+                            <h5 class="card-title">Daftar Inventaris</h5>
+                            <p class="card-text">Kelola inventaris yang tersedia</p>
+                            <a href="{{ route('inventaris.daftar-inventaris.index') }}" class="btn"
+                                style="background: linear-gradient(135deg, #199D5F 0%, #5BF57D 100%); border: none; color: white;">Lihat
+                                Inventaris</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3 mb-3">
                     <div class="card h-100">
                         <div class="card-body text-center">
-                            <i class="fas fa-tags fa-3x text-info mb-3"
-                                style="background: linear-gradient(135deg, #1AAAE8 0%, #46CDEC 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"></i>
-                            <h5 class="card-title">Kategori Inventaris</h5>
-                            <p class="card-text">Kelola kategori inventaris</p>
-                            <a href="{{ route('inventaris.kategori-inventaris.index') }}" class="btn"
-                                style="background: linear-gradient(135deg, #1AAAE8 0%, #46CDEC 100%); border: none; color: white;">Kelola
-                                Kategori</a>
+                            <i class="fas fa-file-alt fa-3x text-primary mb-3"
+                                style="background: linear-gradient(135deg, #14379A 0%, #4285F4 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"></i>
+                            <h5 class="card-title">Data Pengajuan</h5>
+                            <p class="card-text">Lihat semua pengajuan inventaris</p>
+                            <a href="{{ route('pengajuan.index') }}" class="btn"
+                                style="background: linear-gradient(135deg, #14379A 0%, #4285F4 100%); border: none; color: white;">Lihat
+                                Pengajuan</a>
                         </div>
                     </div>
                 </div>
-            @endif
-            <div class="col-md-3 mb-3">
-                <div class="card h-100">
-                    <div class="card-body text-center">
-                        <i class="fas fa-boxes fa-3x text-success mb-3"
-                            style="background: linear-gradient(135deg, #199D5F 0%, #5BF57D 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"></i>
-                        <h5 class="card-title">Daftar Inventaris</h5>
-                        <p class="card-text">Kelola inventaris yang tersedia</p>
-                        <a href="{{ route('inventaris.daftar-inventaris.index') }}" class="btn"
-                            style="background: linear-gradient(135deg, #199D5F 0%, #5BF57D 100%); border: none; color: white;">Lihat
-                            Inventaris</a>
-                    </div>
-                </div>
             </div>
-            <div class="col-md-3 mb-3">
-                <div class="card h-100">
-                    <div class="card-body text-center">
-                        <i class="fas fa-file-alt fa-3x text-primary mb-3"
-                            style="background: linear-gradient(135deg, #14379A 0%, #4285F4 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"></i>
-                        <h5 class="card-title">Data Pengajuan</h5>
-                        <p class="card-text">Lihat semua pengajuan inventaris</p>
-                        <a href="{{ route('pengajuan.index') }}" class="btn"
-                            style="background: linear-gradient(135deg, #14379A 0%, #4285F4 100%); border: none; color: white;">Lihat
-                            Pengajuan</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @endif
 
         <!-- SOP and Templates -->
         <div class="row mb-4">
