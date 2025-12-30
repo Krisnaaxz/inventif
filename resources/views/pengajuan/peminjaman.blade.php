@@ -29,9 +29,9 @@
                         <tr>
                             <th class="text-center" style="width: 15px">No</th>
                             <th>Nama Pengaju</th>
-                            <th>Barang Dipinjam</th>
                             <th>Tanggal Mulai</th>
                             <th>Tanggal Selesai</th>
+                            <th>Barang Dipinjam</th>
                             <th>Status</th>
                             <th class="text-center" style="width: 150px">Opsi</th>
                         </tr>
@@ -41,14 +41,15 @@
                             <tr>
                                 <td class="text-center">{{ $index + 1 }}</td>
                                 <td>{{ $item->user->name }}</td>
+                                <td>{{ $item->tanggal_mulai->format('d M Y') }}</td>
+                                <td>{{ $item->tanggal_selesai->format('d M Y') }}</td>
                                 <td>
                                     @if ($item->inventaris && $item->inventaris->count() > 0)
                                         <ul class="list-unstyled mb-0">
                                             @foreach ($item->inventaris as $inventaris)
                                                 <li class="small">
                                                     {{ $inventaris->nama_inventaris }}
-                                                    <span class="badge bg-secondary">{{ $inventaris->pivot->jumlah }}
-                                                        unit</span>
+                                                    ({{ $inventaris->pivot->jumlah ?? 1 }})
                                                 </li>
                                             @endforeach
                                         </ul>
@@ -56,8 +57,6 @@
                                         <span class="text-muted">-</span>
                                     @endif
                                 </td>
-                                <td>{{ $item->tanggal_mulai->format('d M Y') }}</td>
-                                <td>{{ $item->tanggal_selesai->format('d M Y') }}</td>
                                 <td>
                                     <span
                                         class="badge badge-{{ in_array($item->status, ['disetujui', 'selesai']) ? 'success' : (in_array($item->status, ['ditolak', 'dibatalkan']) ? 'danger' : 'warning') }}">
